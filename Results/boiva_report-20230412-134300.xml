@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.10.5 on darwin)" generated="20230412 13:43:00.349" rpa="false" schemaversion="3">
+<suite id="s1" name="TC01-GET-RealTimeWeather" source="/Users/rialdyperdana/Documents/Iseng/AutomationPribadi/weather-api-robot-framework/Tests/TC01-GET-RealTimeWeather.robot">
+<test id="s1-t1" name="User Get Respond with Valid Data" line="9">
+<kw name="User Get The Data" library="RealTimeWeather">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>X-RapidAPI-Key=${X_RapidAPI_Key}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 13:43:00.517" level="INFO">${header} = {'X-RapidAPI-Key': '5609de86f7mshff37ac23dfeca81p1d8122jsn05613f1f337a'}</msg>
+<status status="PASS" starttime="20230412 13:43:00.517" endtime="20230412 13:43:00.517"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${params}</var>
+<arg>q=${long_lat}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 13:43:00.517" level="INFO">${params} = {'q': '-7.7588325,110.4303985'}</msg>
+<status status="PASS" starttime="20230412 13:43:00.517" endtime="20230412 13:43:00.517"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>real_time_weather</arg>
+<arg>${baseURL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230412 13:43:00.517" level="INFO">Creating Session using : alias=real_time_weather, url=https://weatherapi-com.p.rapidapi.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230412 13:43:00.517" endtime="20230412 13:43:00.517"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${real_time_weather_request}</var>
+<arg>real_time_weather</arg>
+<arg>/current.json</arg>
+<arg>params=${params}</arg>
+<arg>headers=${header}</arg>
+<arg>expected_status=Anything</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230412 13:43:00.911" level="INFO">GET Request : url=https://weatherapi-com.p.rapidapi.com/current.json?q=-7.7588325%2C110.4303985 
+ path_url=/current.json?q=-7.7588325%2C110.4303985 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'X-RapidAPI-Key': '5609de86f7mshff37ac23dfeca81p1d8122jsn05613f1f337a'} 
+ body=None 
+ </msg>
+<msg timestamp="20230412 13:43:00.911" level="INFO">GET Response : url=https://weatherapi-com.p.rapidapi.com/current.json?q=-7.7588325%2C110.4303985 
+ status=200, reason=OK 
+ headers={'Date': 'Wed, 12 Apr 2023 06:43:00 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Cache-Control': 'public, max-age=180', 'Content-Encoding': 'br', 'Vary': 'Accept-Encoding', 'CDN-EdgeStorageId': '783', 'CDN-ProxyVer': '1.03', 'CDN-RequestCountryCode': 'SG', 'CDN-RequestPullCode': '200', 'CDN-PullZone': '93447', 'CDN-CachedAt': '04/12/2023 06:43:00', 'CDN-Uid': '8fa3a04a-75d9-4707-8056-b7b33c8ac7fe', 'CDN-Cache': 'EXPIRED', 'CDN-RequestPullSuccess': 'True', 'CDN-RequestId': '10961bf33d1758d7a5f39ed4ae80f59c', 'CDN-Status': '200', 'X-RateLimit-Requests-Limit': '1000000', 'X-RateLimit-Requests-Remaining': '999995', 'X-RateLimit-Requests-Reset': '2509038', 'Server': 'RapidAPI-1.2.8', 'X-RapidAPI-Version': '1.2.8', 'X-RapidAPI-Region': 'AWS - ap-southeast-1'} 
+ body={"location":{"name":"Depok","region":"Daerah Istimewa Yogyakarta","country":"Indonesia","lat":-7.76,"lon":110.43,"tz_id":"Asia/Jakarta","localtime_epoch":1681281780,"localtime":"2023-04-12 13:43"},"current":{"last_updated_epoch":1681281000,"last_updated":"2023-04-12 13:30","temp_c":31.1,"temp_f":88.0,"is_day":1,"condition":{"text":"Patchy rain possible","icon":"//cdn.weatherapi.com/weather/64x64/day/176.png","code":1063},"wind_mph":8.5,"wind_kph":13.7,"wind_degree":225,"wind_dir":"SW","pressure_mb":1008.0,"pressure_in":29.77,"precip_mm":0.1,"precip_in":0.0,"humidity":62,"cloud":93,"feelslike_c":35.7,"feelslike_f":96.3,"vis_km":10.0,"vis_miles":6.0,"uv":7.0,"gust_mph":10.3,"gust_kph":16.6}} 
+ </msg>
+<msg timestamp="20230412 13:43:00.912" level="INFO">/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/urllib3/connectionpool.py:1043: InsecureRequestWarning: Unverified HTTPS request is being made to host 'weatherapi-com.p.rapidapi.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20230412 13:43:00.912" level="INFO">${real_time_weather_request} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230412 13:43:00.517" endtime="20230412 13:43:00.912"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${real_time_weather_respond}</var>
+<arg>${real_time_weather_request.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230412 13:43:00.914" level="INFO">${real_time_weather_respond} = {'location': {'name': 'Depok', 'region': 'Daerah Istimewa Yogyakarta', 'country': 'Indonesia', 'lat': -7.76, 'lon': 110.43, 'tz_id': 'Asia/Jakarta', 'localtime_epoch': 1681281780, 'localtime': '2023-0...</msg>
+<status status="PASS" starttime="20230412 13:43:00.912" endtime="20230412 13:43:00.914"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${real_time_weather_request_status_code}</var>
+<arg>${real_time_weather_request.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230412 13:43:00.915" level="INFO">${real_time_weather_request_status_code} = 200</msg>
+<status status="PASS" starttime="20230412 13:43:00.914" endtime="20230412 13:43:00.915"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${real_time_weather_respond}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 13:43:00.916" level="INFO">${real_time_weather_respond} = {'location': {'name': 'Depok', 'region': 'Daerah Istimewa Yogyakarta', 'country': 'Indonesia', 'lat': -7.76, 'lon': 110.43, 'tz_id': 'Asia/Jakarta', 'localtime_epoch': 1681281780, 'localtime': '2023-0...</msg>
+<status status="PASS" starttime="20230412 13:43:00.915" endtime="20230412 13:43:00.916"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${real_time_weather_request_status_code}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 13:43:00.916" level="INFO">${real_time_weather_request_status_code} = 200</msg>
+<status status="PASS" starttime="20230412 13:43:00.916" endtime="20230412 13:43:00.916"/>
+</kw>
+<status status="PASS" starttime="20230412 13:43:00.517" endtime="20230412 13:43:00.917"/>
+</kw>
+<kw name="User Validate Status Code" library="RealTimeWeather">
+<arg>200</arg>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${real_time_weather_request_status_code}</arg>
+<arg>${expectedCodeStatus}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230412 13:43:00.917" endtime="20230412 13:43:00.918"/>
+</kw>
+<status status="PASS" starttime="20230412 13:43:00.917" endtime="20230412 13:43:00.918"/>
+</kw>
+<kw name="User Validate the Respond Body" library="RealTimeWeather">
+<if>
+<branch type="IF" condition="${real_time_weather_request_status_code} == 200">
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_name}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230412 13:43:00.948" level="INFO">${location_name} = ['Depok']</msg>
+<status status="PASS" starttime="20230412 13:43:00.919" endtime="20230412 13:43:00.948"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_name}</var>
+<arg>${location_name}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230412 13:43:00.948" level="INFO">${location_name} = Depok</msg>
+<status status="PASS" starttime="20230412 13:43:00.948" endtime="20230412 13:43:00.948"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_name}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20230412 13:43:00.948" level="INFO">Length is 5</msg>
+<status status="PASS" starttime="20230412 13:43:00.948" endtime="20230412 13:43:00.948"/>
+</kw>
+<status status="PASS" starttime="20230412 13:43:00.919" endtime="20230412 13:43:00.948"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>Error Message is appear on the respond body</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20230412 13:43:00.949" endtime="20230412 13:43:00.949"/>
+</kw>
+<status status="NOT RUN" starttime="20230412 13:43:00.948" endtime="20230412 13:43:00.949"/>
+</branch>
+<status status="PASS" starttime="20230412 13:43:00.918" endtime="20230412 13:43:00.949"/>
+</if>
+<status status="PASS" starttime="20230412 13:43:00.918" endtime="20230412 13:43:00.949"/>
+</kw>
+<status status="PASS" starttime="20230412 13:43:00.516" endtime="20230412 13:43:00.949"/>
+</test>
+<status status="PASS" starttime="20230412 13:43:00.350" endtime="20230412 13:43:00.949"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="TC01-GET-RealTimeWeather">TC01-GET-RealTimeWeather</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

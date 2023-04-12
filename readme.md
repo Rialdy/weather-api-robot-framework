@@ -1,0 +1,1 @@
+robot -d Results --timestampoutputs --output boiva_report.xml --log boiva_report.html --report NONE Tests/TC01-GET-RealTimeWeather.robot
