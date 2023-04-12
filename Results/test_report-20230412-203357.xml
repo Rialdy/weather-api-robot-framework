@@ -1,0 +1,3404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.10.5 on darwin)" generated="20230412 20:33:57.583" rpa="false" schemaversion="3">
+<suite id="s1" name="Tests" source="/Users/rialdyperdana/Documents/Iseng/AutomationPribadi/weather-api-robot-framework/Tests">
+<suite id="s1-s1" name="TC01-GET-RealTimeWeather" source="/Users/rialdyperdana/Documents/Iseng/AutomationPribadi/weather-api-robot-framework/Tests/TC01-GET-RealTimeWeather.robot">
+<test id="s1-s1-t1" name="User Get Respond with Valid Data" line="10">
+<kw name="User Get The Data" library="RealTimeWeather">
+<arg>${X_RapidAPI_Key}</arg>
+<arg>${long_lat}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>X-RapidAPI-Key=${X_RapidAPI_Key}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:33:57.926" level="INFO">${header} = {'X-RapidAPI-Key': '5609de86f7mshff37ac23dfeca81p1d8122jsn05613f1f337a'}</msg>
+<status status="PASS" starttime="20230412 20:33:57.926" endtime="20230412 20:33:57.926"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${params}</var>
+<arg>q=${long_lat}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:33:57.926" level="INFO">${params} = {'q': '-7.7588325,110.4303985'}</msg>
+<status status="PASS" starttime="20230412 20:33:57.926" endtime="20230412 20:33:57.926"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>real_time_weather</arg>
+<arg>${baseURL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230412 20:33:57.926" level="INFO">Creating Session using : alias=real_time_weather, url=https://weatherapi-com.p.rapidapi.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230412 20:33:57.926" endtime="20230412 20:33:57.926"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${real_time_weather_request}</var>
+<arg>real_time_weather</arg>
+<arg>/current.json</arg>
+<arg>params=${params}</arg>
+<arg>headers=${header}</arg>
+<arg>expected_status=Anything</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230412 20:33:58.341" level="INFO">GET Request : url=https://weatherapi-com.p.rapidapi.com/current.json?q=-7.7588325%2C110.4303985 
+ path_url=/current.json?q=-7.7588325%2C110.4303985 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'X-RapidAPI-Key': '5609de86f7mshff37ac23dfeca81p1d8122jsn05613f1f337a'} 
+ body=None 
+ </msg>
+<msg timestamp="20230412 20:33:58.341" level="INFO">GET Response : url=https://weatherapi-com.p.rapidapi.com/current.json?q=-7.7588325%2C110.4303985 
+ status=200, reason=OK 
+ headers={'Date': 'Wed, 12 Apr 2023 13:33:58 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Cache-Control': 'public, max-age=180', 'Content-Encoding': 'br', 'Vary': 'Accept-Encoding', 'CDN-EdgeStorageId': '783', 'CDN-ProxyVer': '1.03', 'CDN-RequestCountryCode': 'SG', 'CDN-RequestPullCode': '200', 'CDN-PullZone': '93447', 'CDN-CachedAt': '04/12/2023 13:33:58', 'CDN-Uid': '8fa3a04a-75d9-4707-8056-b7b33c8ac7fe', 'CDN-Cache': 'EXPIRED', 'CDN-RequestPullSuccess': 'True', 'CDN-RequestId': '811a87e8c8a92227015735c3507b5c59', 'CDN-Status': '200', 'X-RateLimit-Requests-Limit': '1000000', 'X-RateLimit-Requests-Remaining': '999964', 'X-RateLimit-Requests-Reset': '2484380', 'Server': 'RapidAPI-1.2.8', 'X-RapidAPI-Version': '1.2.8', 'X-RapidAPI-Region': 'AWS - ap-southeast-1'} 
+ body={"location":{"name":"Depok","region":"Daerah Istimewa Yogyakarta","country":"Indonesia","lat":-7.76,"lon":110.43,"tz_id":"Asia/Jakarta","localtime_epoch":1681306438,"localtime":"2023-04-12 20:33"},"current":{"last_updated_epoch":1681306200,"last_updated":"2023-04-12 20:30","temp_c":24.2,"temp_f":75.6,"is_day":0,"condition":{"text":"Moderate or heavy rain shower","icon":"//cdn.weatherapi.com/weather/64x64/night/356.png","code":1243},"wind_mph":4.7,"wind_kph":7.6,"wind_degree":255,"wind_dir":"WSW","pressure_mb":1010.0,"pressure_in":29.83,"precip_mm":5.0,"precip_in":0.2,"humidity":92,"cloud":71,"feelslike_c":26.7,"feelslike_f":80.1,"vis_km":7.0,"vis_miles":4.0,"uv":1.0,"gust_mph":8.7,"gust_kph":14.0}} 
+ </msg>
+<msg timestamp="20230412 20:33:58.341" level="INFO">/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/urllib3/connectionpool.py:1043: InsecureRequestWarning: Unverified HTTPS request is being made to host 'weatherapi-com.p.rapidapi.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20230412 20:33:58.341" level="INFO">${real_time_weather_request} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230412 20:33:57.926" endtime="20230412 20:33:58.341"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${real_time_weather_respond}</var>
+<arg>${real_time_weather_request.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230412 20:33:58.343" level="INFO">${real_time_weather_respond} = {'location': {'name': 'Depok', 'region': 'Daerah Istimewa Yogyakarta', 'country': 'Indonesia', 'lat': -7.76, 'lon': 110.43, 'tz_id': 'Asia/Jakarta', 'localtime_epoch': 1681306438, 'localtime': '2023-0...</msg>
+<status status="PASS" starttime="20230412 20:33:58.342" endtime="20230412 20:33:58.343"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${real_time_weather_request_status_code}</var>
+<arg>${real_time_weather_request.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230412 20:33:58.344" level="INFO">${real_time_weather_request_status_code} = 200</msg>
+<status status="PASS" starttime="20230412 20:33:58.343" endtime="20230412 20:33:58.344"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${real_time_weather_respond}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:33:58.345" level="INFO">${real_time_weather_respond} = {'location': {'name': 'Depok', 'region': 'Daerah Istimewa Yogyakarta', 'country': 'Indonesia', 'lat': -7.76, 'lon': 110.43, 'tz_id': 'Asia/Jakarta', 'localtime_epoch': 1681306438, 'localtime': '2023-0...</msg>
+<status status="PASS" starttime="20230412 20:33:58.344" endtime="20230412 20:33:58.345"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${real_time_weather_request_status_code}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:33:58.346" level="INFO">${real_time_weather_request_status_code} = 200</msg>
+<status status="PASS" starttime="20230412 20:33:58.345" endtime="20230412 20:33:58.346"/>
+</kw>
+<status status="PASS" starttime="20230412 20:33:57.925" endtime="20230412 20:33:58.347"/>
+</kw>
+<kw name="User Validate Status Code" library="RealTimeWeather">
+<arg>200</arg>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${real_time_weather_request_status_code}</arg>
+<arg>${expectedCodeStatus}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230412 20:33:58.348" endtime="20230412 20:33:58.348"/>
+</kw>
+<status status="PASS" starttime="20230412 20:33:58.347" endtime="20230412 20:33:58.348"/>
+</kw>
+<kw name="User Validate the Respond Body" library="RealTimeWeather">
+<if>
+<branch type="IF" condition="${real_time_weather_request_status_code} == 200">
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_name}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230412 20:33:58.374" level="INFO">${location_name} = ['Depok']</msg>
+<status status="PASS" starttime="20230412 20:33:58.349" endtime="20230412 20:33:58.374"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_name}</var>
+<arg>${location_name}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230412 20:33:58.374" level="INFO">${location_name} = Depok</msg>
+<status status="PASS" starttime="20230412 20:33:58.374" endtime="20230412 20:33:58.374"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_name}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20230412 20:33:58.375" level="INFO">Length is 5</msg>
+<status status="PASS" starttime="20230412 20:33:58.374" endtime="20230412 20:33:58.375"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_region}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.region</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230412 20:33:58.390" level="INFO">${location_region} = ['Daerah Istimewa Yogyakarta']</msg>
+<status status="PASS" starttime="20230412 20:33:58.375" endtime="20230412 20:33:58.390"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_region}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230412 20:33:58.390" level="INFO">${location_region} = Daerah Istimewa Yogyakarta</msg>
+<status status="PASS" starttime="20230412 20:33:58.390" endtime="20230412 20:33:58.390"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_region}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20230412 20:33:58.390" level="INFO">Length is 26</msg>
+<status status="PASS" starttime="20230412 20:33:58.390" endtime="20230412 20:33:58.390"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_country}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.country</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230412 20:33:58.403" level="INFO">${location_country} = ['Indonesia']</msg>
+<status status="PASS" starttime="20230412 20:33:58.390" endtime="20230412 20:33:58.403"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_country}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230412 20:33:58.403" level="INFO">${location_region} = Indonesia</msg>
+<status status="PASS" starttime="20230412 20:33:58.403" endtime="20230412 20:33:58.403"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_country}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20230412 20:33:58.403" level="INFO">Length is 1</msg>
+<status status="PASS" starttime="20230412 20:33:58.403" endtime="20230412 20:33:58.403"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lat}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.lat</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230412 20:33:58.414" level="INFO">${location_lat} = [-7.76]</msg>
+<status status="PASS" starttime="20230412 20:33:58.403" endtime="20230412 20:33:58.414"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230412 20:33:58.414" level="INFO">${location_lat} = -7.76</msg>
+<status status="PASS" starttime="20230412 20:33:58.414" endtime="20230412 20:33:58.414"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230412 20:33:58.414" level="INFO">${location_lat} = -7.76</msg>
+<status status="PASS" starttime="20230412 20:33:58.414" endtime="20230412 20:33:58.414"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lat}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20230412 20:33:58.414" level="INFO">Length is 5</msg>
+<status status="PASS" starttime="20230412 20:33:58.414" endtime="20230412 20:33:58.414"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lon}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.lon</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230412 20:33:58.425" level="INFO">${location_lon} = [110.43]</msg>
+<status status="PASS" starttime="20230412 20:33:58.414" endtime="20230412 20:33:58.425"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230412 20:33:58.425" level="INFO">${location_lon} = 110.43</msg>
+<status status="PASS" starttime="20230412 20:33:58.425" endtime="20230412 20:33:58.425"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230412 20:33:58.425" level="INFO">${location_lon} = 110.43</msg>
+<status status="PASS" starttime="20230412 20:33:58.425" endtime="20230412 20:33:58.425"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lon}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20230412 20:33:58.425" level="INFO">Length is 6</msg>
+<status status="PASS" starttime="20230412 20:33:58.425" endtime="20230412 20:33:58.425"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_tz_id}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.tz_id</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230412 20:33:58.435" level="INFO">${location_tz_id} = ['Asia/Jakarta']</msg>
+<status status="PASS" starttime="20230412 20:33:58.425" endtime="20230412 20:33:58.435"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_tz_id}</var>
+<arg>${location_tz_id}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230412 20:33:58.435" level="INFO">${location_tz_id} = Asia/Jakarta</msg>
+<status status="PASS" starttime="20230412 20:33:58.435" endtime="20230412 20:33:58.435"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_tz_id}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20230412 20:33:58.435" level="INFO">Length is 12</msg>
+<status status="PASS" starttime="20230412 20:33:58.435" endtime="20230412 20:33:58.435"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime_epoch}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.localtime_epoch</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230412 20:33:58.444" level="INFO">${location_localtime_epoch} = [1681306438]</msg>
+<status status="PASS" starttime="20230412 20:33:58.435" endtime="20230412 20:33:58.444"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230412 20:33:58.444" level="INFO">${location_localtime_epoch} = 1681306438</msg>
+<status status="PASS" starttime="20230412 20:33:58.444" endtime="20230412 20:33:58.444"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230412 20:33:58.444" level="INFO">${location_localtime_epoch} = 1681306438</msg>
+<status status="PASS" starttime="20230412 20:33:58.444" endtime="20230412 20:33:58.445"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime_epoch}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20230412 20:33:58.445" level="INFO">Length is 10</msg>
+<status status="PASS" starttime="20230412 20:33:58.445" endtime="20230412 20:33:58.445"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.localtime</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230412 20:33:58.454" level="INFO">${location_localtime} = ['2023-04-12 20:33']</msg>
+<status status="PASS" starttime="20230412 20:33:58.445" endtime="20230412 20:33:58.454"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime}</var>
+<arg>${location_localtime}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230412 20:33:58.454" level="INFO">${location_localtime} = 2023-04-12 20:33</msg>
+<status status="PASS" starttime="20230412 20:33:58.454" endtime="20230412 20:33:58.454"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20230412 20:33:58.454" level="INFO">Length is 16</msg>
+<status status="PASS" starttime="20230412 20:33:58.454" endtime="20230412 20:33:58.454"/>
+</kw>
+<status status="PASS" starttime="20230412 20:33:58.349" endtime="20230412 20:33:58.454"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>Error Message is appear on the respond body</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.454" endtime="20230412 20:33:58.454"/>
+</kw>
+<status status="NOT RUN" starttime="20230412 20:33:58.454" endtime="20230412 20:33:58.454"/>
+</branch>
+<status status="PASS" starttime="20230412 20:33:58.349" endtime="20230412 20:33:58.454"/>
+</if>
+<status status="PASS" starttime="20230412 20:33:58.349" endtime="20230412 20:33:58.454"/>
+</kw>
+<status status="PASS" starttime="20230412 20:33:57.925" endtime="20230412 20:33:58.454"/>
+</test>
+<test id="s1-s1-t2" name="User Get Respond with Empty Parameter q" line="15">
+<kw name="User Get The Data" library="RealTimeWeather">
+<arg>${X_RapidAPI_Key}</arg>
+<arg>${empty_value}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>X-RapidAPI-Key=${X_RapidAPI_Key}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:33:58.455" level="INFO">${header} = {'X-RapidAPI-Key': '5609de86f7mshff37ac23dfeca81p1d8122jsn05613f1f337a'}</msg>
+<status status="PASS" starttime="20230412 20:33:58.455" endtime="20230412 20:33:58.455"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${params}</var>
+<arg>q=${long_lat}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:33:58.455" level="INFO">${params} = {'q': ''}</msg>
+<status status="PASS" starttime="20230412 20:33:58.455" endtime="20230412 20:33:58.455"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>real_time_weather</arg>
+<arg>${baseURL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230412 20:33:58.455" level="INFO">Creating Session using : alias=real_time_weather, url=https://weatherapi-com.p.rapidapi.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230412 20:33:58.455" endtime="20230412 20:33:58.456"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${real_time_weather_request}</var>
+<arg>real_time_weather</arg>
+<arg>/current.json</arg>
+<arg>params=${params}</arg>
+<arg>headers=${header}</arg>
+<arg>expected_status=Anything</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230412 20:33:58.766" level="INFO">GET Request : url=https://weatherapi-com.p.rapidapi.com/current.json?q= 
+ path_url=/current.json?q= 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'X-RapidAPI-Key': '5609de86f7mshff37ac23dfeca81p1d8122jsn05613f1f337a'} 
+ body=None 
+ </msg>
+<msg timestamp="20230412 20:33:58.767" level="INFO">GET Response : url=https://weatherapi-com.p.rapidapi.com/current.json?q= 
+ status=400, reason=Bad Request 
+ headers={'Date': 'Wed, 12 Apr 2023 13:33:59 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Cache-Control': 'public, max-age=5', 'CDN-EdgeStorageId': '749', 'CDN-ProxyVer': '1.03', 'CDN-RequestCountryCode': 'SG', 'CDN-RequestPullCode': '400', 'CDN-PullZone': '93447', 'CDN-CachedAt': '04/12/2023 13:33:59', 'CDN-Uid': '8fa3a04a-75d9-4707-8056-b7b33c8ac7fe', 'CDN-Cache': 'EXPIRED', 'CDN-RequestId': '6a218e08abf08b100384872e894c318f', 'CDN-RequestPullSuccess': 'True', 'CDN-Status': '400', 'X-RateLimit-Requests-Limit': '1000000', 'X-RateLimit-Requests-Remaining': '999963', 'X-RateLimit-Requests-Reset': '2484379', 'Server': 'RapidAPI-1.2.8', 'X-RapidAPI-Version': '1.2.8', 'X-RapidAPI-Region': 'AWS - ap-southeast-1'} 
+ body={"error":{"code":1003,"message":"Parameter q is missing."}} 
+ </msg>
+<msg timestamp="20230412 20:33:58.767" level="INFO">/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/urllib3/connectionpool.py:1043: InsecureRequestWarning: Unverified HTTPS request is being made to host 'weatherapi-com.p.rapidapi.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20230412 20:33:58.768" level="INFO">${real_time_weather_request} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20230412 20:33:58.456" endtime="20230412 20:33:58.768"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${real_time_weather_respond}</var>
+<arg>${real_time_weather_request.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230412 20:33:58.770" level="INFO">${real_time_weather_respond} = {'error': {'code': 1003, 'message': 'Parameter q is missing.'}}</msg>
+<status status="PASS" starttime="20230412 20:33:58.768" endtime="20230412 20:33:58.770"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${real_time_weather_request_status_code}</var>
+<arg>${real_time_weather_request.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230412 20:33:58.771" level="INFO">${real_time_weather_request_status_code} = 400</msg>
+<status status="PASS" starttime="20230412 20:33:58.770" endtime="20230412 20:33:58.771"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${real_time_weather_respond}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:33:58.772" level="INFO">${real_time_weather_respond} = {'error': {'code': 1003, 'message': 'Parameter q is missing.'}}</msg>
+<status status="PASS" starttime="20230412 20:33:58.771" endtime="20230412 20:33:58.772"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${real_time_weather_request_status_code}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:33:58.773" level="INFO">${real_time_weather_request_status_code} = 400</msg>
+<status status="PASS" starttime="20230412 20:33:58.772" endtime="20230412 20:33:58.773"/>
+</kw>
+<status status="PASS" starttime="20230412 20:33:58.455" endtime="20230412 20:33:58.773"/>
+</kw>
+<kw name="User Validate Status Code" library="RealTimeWeather">
+<arg>400</arg>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${real_time_weather_request_status_code}</arg>
+<arg>${expectedCodeStatus}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230412 20:33:58.774" endtime="20230412 20:33:58.774"/>
+</kw>
+<status status="PASS" starttime="20230412 20:33:58.773" endtime="20230412 20:33:58.775"/>
+</kw>
+<kw name="User Validate the Respond Body" library="RealTimeWeather">
+<if>
+<branch type="IF" condition="${real_time_weather_request_status_code} == 200">
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_name}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.775" endtime="20230412 20:33:58.776"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_name}</var>
+<arg>${location_name}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.776" endtime="20230412 20:33:58.776"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_name}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.776" endtime="20230412 20:33:58.776"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_region}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.region</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.776" endtime="20230412 20:33:58.776"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_region}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.776" endtime="20230412 20:33:58.776"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_region}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.776" endtime="20230412 20:33:58.776"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_country}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.country</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.776" endtime="20230412 20:33:58.776"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_country}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.777" endtime="20230412 20:33:58.777"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_country}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.777" endtime="20230412 20:33:58.777"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lat}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.lat</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.777" endtime="20230412 20:33:58.777"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.777" endtime="20230412 20:33:58.777"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.777" endtime="20230412 20:33:58.777"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lat}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.777" endtime="20230412 20:33:58.777"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lon}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.lon</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.777" endtime="20230412 20:33:58.777"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.777" endtime="20230412 20:33:58.777"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.778" endtime="20230412 20:33:58.778"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lon}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.778" endtime="20230412 20:33:58.778"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_tz_id}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.tz_id</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.778" endtime="20230412 20:33:58.778"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_tz_id}</var>
+<arg>${location_tz_id}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.778" endtime="20230412 20:33:58.778"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_tz_id}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.778" endtime="20230412 20:33:58.778"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime_epoch}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.localtime_epoch</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.778" endtime="20230412 20:33:58.778"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.778" endtime="20230412 20:33:58.778"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.778" endtime="20230412 20:33:58.778"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime_epoch}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.779" endtime="20230412 20:33:58.779"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.localtime</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.779" endtime="20230412 20:33:58.779"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime}</var>
+<arg>${location_localtime}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.779" endtime="20230412 20:33:58.779"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:58.779" endtime="20230412 20:33:58.779"/>
+</kw>
+<status status="NOT RUN" starttime="20230412 20:33:58.775" endtime="20230412 20:33:58.779"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>Error Message is appear on the respond body</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230412 20:33:58.779" level="INFO">Error Message is appear on the respond body</msg>
+<status status="PASS" starttime="20230412 20:33:58.779" endtime="20230412 20:33:58.779"/>
+</kw>
+<status status="PASS" starttime="20230412 20:33:58.779" endtime="20230412 20:33:58.779"/>
+</branch>
+<status status="PASS" starttime="20230412 20:33:58.775" endtime="20230412 20:33:58.779"/>
+</if>
+<status status="PASS" starttime="20230412 20:33:58.775" endtime="20230412 20:33:58.780"/>
+</kw>
+<status status="PASS" starttime="20230412 20:33:58.455" endtime="20230412 20:33:58.780"/>
+</test>
+<test id="s1-s1-t3" name="User Get Respond with Invalid q" line="20">
+<kw name="User Get The Data" library="RealTimeWeather">
+<arg>${X_RapidAPI_Key}</arg>
+<arg>${invalid_data}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>X-RapidAPI-Key=${X_RapidAPI_Key}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:33:58.782" level="INFO">${header} = {'X-RapidAPI-Key': '5609de86f7mshff37ac23dfeca81p1d8122jsn05613f1f337a'}</msg>
+<status status="PASS" starttime="20230412 20:33:58.781" endtime="20230412 20:33:58.782"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${params}</var>
+<arg>q=${long_lat}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:33:58.782" level="INFO">${params} = {'q': '$%^&amp;*()'}</msg>
+<status status="PASS" starttime="20230412 20:33:58.782" endtime="20230412 20:33:58.782"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>real_time_weather</arg>
+<arg>${baseURL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230412 20:33:58.783" level="INFO">Creating Session using : alias=real_time_weather, url=https://weatherapi-com.p.rapidapi.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230412 20:33:58.782" endtime="20230412 20:33:58.783"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${real_time_weather_request}</var>
+<arg>real_time_weather</arg>
+<arg>/current.json</arg>
+<arg>params=${params}</arg>
+<arg>headers=${header}</arg>
+<arg>expected_status=Anything</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230412 20:33:59.382" level="INFO">GET Request : url=https://weatherapi-com.p.rapidapi.com/current.json?q=%24%25%5E%26%2A%28%29 
+ path_url=/current.json?q=%24%25%5E%26%2A%28%29 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'X-RapidAPI-Key': '5609de86f7mshff37ac23dfeca81p1d8122jsn05613f1f337a'} 
+ body=None 
+ </msg>
+<msg timestamp="20230412 20:33:59.382" level="INFO">GET Response : url=https://weatherapi-com.p.rapidapi.com/current.json?q=%24%25%5E%26%2A%28%29 
+ status=400, reason=Bad Request 
+ headers={'Date': 'Wed, 12 Apr 2023 13:33:59 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Cache-Control': 'public, max-age=5', 'CDN-EdgeStorageId': '1063', 'CDN-ProxyVer': '1.03', 'CDN-RequestCountryCode': 'SG', 'CDN-RequestPullCode': '400', 'CDN-PullZone': '93447', 'CDN-CachedAt': '04/12/2023 13:33:59', 'CDN-Uid': '8fa3a04a-75d9-4707-8056-b7b33c8ac7fe', 'CDN-Cache': 'MISS', 'CDN-RequestId': '675846f37eedd66e147899b0383e370c', 'CDN-RequestPullSuccess': 'True', 'CDN-Status': '400', 'X-RateLimit-Requests-Limit': '1000000', 'X-RateLimit-Requests-Remaining': '999962', 'X-RateLimit-Requests-Reset': '2484379', 'Server': 'RapidAPI-1.2.8', 'X-RapidAPI-Version': '1.2.8', 'X-RapidAPI-Region': 'AWS - ap-southeast-1'} 
+ body={"error":{"code":1006,"message":"No matching location found."}} 
+ </msg>
+<msg timestamp="20230412 20:33:59.382" level="INFO">/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/urllib3/connectionpool.py:1043: InsecureRequestWarning: Unverified HTTPS request is being made to host 'weatherapi-com.p.rapidapi.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20230412 20:33:59.383" level="INFO">${real_time_weather_request} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20230412 20:33:58.784" endtime="20230412 20:33:59.383"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${real_time_weather_respond}</var>
+<arg>${real_time_weather_request.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230412 20:33:59.384" level="INFO">${real_time_weather_respond} = {'error': {'code': 1006, 'message': 'No matching location found.'}}</msg>
+<status status="PASS" starttime="20230412 20:33:59.383" endtime="20230412 20:33:59.384"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${real_time_weather_request_status_code}</var>
+<arg>${real_time_weather_request.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230412 20:33:59.385" level="INFO">${real_time_weather_request_status_code} = 400</msg>
+<status status="PASS" starttime="20230412 20:33:59.384" endtime="20230412 20:33:59.385"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${real_time_weather_respond}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:33:59.385" level="INFO">${real_time_weather_respond} = {'error': {'code': 1006, 'message': 'No matching location found.'}}</msg>
+<status status="PASS" starttime="20230412 20:33:59.385" endtime="20230412 20:33:59.385"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${real_time_weather_request_status_code}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:33:59.386" level="INFO">${real_time_weather_request_status_code} = 400</msg>
+<status status="PASS" starttime="20230412 20:33:59.385" endtime="20230412 20:33:59.386"/>
+</kw>
+<status status="PASS" starttime="20230412 20:33:58.781" endtime="20230412 20:33:59.386"/>
+</kw>
+<kw name="User Validate Status Code" library="RealTimeWeather">
+<arg>400</arg>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${real_time_weather_request_status_code}</arg>
+<arg>${expectedCodeStatus}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230412 20:33:59.386" endtime="20230412 20:33:59.387"/>
+</kw>
+<status status="PASS" starttime="20230412 20:33:59.386" endtime="20230412 20:33:59.387"/>
+</kw>
+<kw name="User Validate the Respond Body" library="RealTimeWeather">
+<if>
+<branch type="IF" condition="${real_time_weather_request_status_code} == 200">
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_name}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.388" endtime="20230412 20:33:59.388"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_name}</var>
+<arg>${location_name}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.388" endtime="20230412 20:33:59.388"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_name}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.388" endtime="20230412 20:33:59.388"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_region}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.region</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.388" endtime="20230412 20:33:59.388"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_region}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.388" endtime="20230412 20:33:59.388"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_region}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.388" endtime="20230412 20:33:59.388"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_country}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.country</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.388" endtime="20230412 20:33:59.389"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_country}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.389" endtime="20230412 20:33:59.389"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_country}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.389" endtime="20230412 20:33:59.389"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lat}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.lat</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.389" endtime="20230412 20:33:59.389"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.389" endtime="20230412 20:33:59.389"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.389" endtime="20230412 20:33:59.389"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lat}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.389" endtime="20230412 20:33:59.389"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lon}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.lon</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.389" endtime="20230412 20:33:59.390"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.390" endtime="20230412 20:33:59.390"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.390" endtime="20230412 20:33:59.390"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lon}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.390" endtime="20230412 20:33:59.390"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_tz_id}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.tz_id</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.390" endtime="20230412 20:33:59.390"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_tz_id}</var>
+<arg>${location_tz_id}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.390" endtime="20230412 20:33:59.390"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_tz_id}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.390" endtime="20230412 20:33:59.390"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime_epoch}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.localtime_epoch</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.390" endtime="20230412 20:33:59.390"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.390" endtime="20230412 20:33:59.391"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.391" endtime="20230412 20:33:59.391"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime_epoch}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.391" endtime="20230412 20:33:59.391"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.localtime</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.391" endtime="20230412 20:33:59.391"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime}</var>
+<arg>${location_localtime}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.391" endtime="20230412 20:33:59.391"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:33:59.391" endtime="20230412 20:33:59.391"/>
+</kw>
+<status status="NOT RUN" starttime="20230412 20:33:59.388" endtime="20230412 20:33:59.391"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>Error Message is appear on the respond body</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230412 20:33:59.391" level="INFO">Error Message is appear on the respond body</msg>
+<status status="PASS" starttime="20230412 20:33:59.391" endtime="20230412 20:33:59.392"/>
+</kw>
+<status status="PASS" starttime="20230412 20:33:59.391" endtime="20230412 20:33:59.392"/>
+</branch>
+<status status="PASS" starttime="20230412 20:33:59.387" endtime="20230412 20:33:59.392"/>
+</if>
+<status status="PASS" starttime="20230412 20:33:59.387" endtime="20230412 20:33:59.392"/>
+</kw>
+<status status="PASS" starttime="20230412 20:33:58.780" endtime="20230412 20:33:59.392"/>
+</test>
+<test id="s1-s1-t4" name="User Get Respond with Empty X_RapidAPI_Key" line="25">
+<kw name="User Get The Data" library="RealTimeWeather">
+<arg>${empty_value}</arg>
+<arg>${long_lat}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>X-RapidAPI-Key=${X_RapidAPI_Key}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:33:59.395" level="INFO">${header} = {'X-RapidAPI-Key': ''}</msg>
+<status status="PASS" starttime="20230412 20:33:59.394" endtime="20230412 20:33:59.395"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${params}</var>
+<arg>q=${long_lat}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:33:59.395" level="INFO">${params} = {'q': '-7.7588325,110.4303985'}</msg>
+<status status="PASS" starttime="20230412 20:33:59.395" endtime="20230412 20:33:59.395"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>real_time_weather</arg>
+<arg>${baseURL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230412 20:33:59.395" level="INFO">Creating Session using : alias=real_time_weather, url=https://weatherapi-com.p.rapidapi.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230412 20:33:59.395" endtime="20230412 20:33:59.396"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${real_time_weather_request}</var>
+<arg>real_time_weather</arg>
+<arg>/current.json</arg>
+<arg>params=${params}</arg>
+<arg>headers=${header}</arg>
+<arg>expected_status=Anything</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230412 20:33:59.991" level="INFO">GET Request : url=https://weatherapi-com.p.rapidapi.com/current.json?q=-7.7588325%2C110.4303985 
+ path_url=/current.json?q=-7.7588325%2C110.4303985 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'X-RapidAPI-Key': ''} 
+ body=None 
+ </msg>
+<msg timestamp="20230412 20:33:59.992" level="INFO">GET Response : url=https://weatherapi-com.p.rapidapi.com/current.json?q=-7.7588325%2C110.4303985 
+ status=401, reason=Unauthorized 
+ headers={'Date': 'Wed, 12 Apr 2023 13:34:00 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'X-RapidAPI-Version': '1.2.8', 'X-RapidAPI-Region': 'AWS - ap-southeast-1', 'X-RapidAPI-Proxy-Response': 'true', 'Server': 'RapidAPI-1.2.8'} 
+ body={"message":"Invalid API key. Go to https:\/\/docs.rapidapi.com\/docs\/keys for more info."} 
+ </msg>
+<msg timestamp="20230412 20:33:59.992" level="INFO">/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/urllib3/connectionpool.py:1043: InsecureRequestWarning: Unverified HTTPS request is being made to host 'weatherapi-com.p.rapidapi.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20230412 20:33:59.992" level="INFO">${real_time_weather_request} = &lt;Response [401]&gt;</msg>
+<status status="PASS" starttime="20230412 20:33:59.396" endtime="20230412 20:33:59.992"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${real_time_weather_respond}</var>
+<arg>${real_time_weather_request.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230412 20:33:59.994" level="INFO">${real_time_weather_respond} = {'message': 'Invalid API key. Go to https://docs.rapidapi.com/docs/keys for more info.'}</msg>
+<status status="PASS" starttime="20230412 20:33:59.993" endtime="20230412 20:33:59.995"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${real_time_weather_request_status_code}</var>
+<arg>${real_time_weather_request.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230412 20:33:59.996" level="INFO">${real_time_weather_request_status_code} = 401</msg>
+<status status="PASS" starttime="20230412 20:33:59.995" endtime="20230412 20:33:59.996"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${real_time_weather_respond}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:33:59.997" level="INFO">${real_time_weather_respond} = {'message': 'Invalid API key. Go to https://docs.rapidapi.com/docs/keys for more info.'}</msg>
+<status status="PASS" starttime="20230412 20:33:59.996" endtime="20230412 20:33:59.997"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${real_time_weather_request_status_code}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:33:59.997" level="INFO">${real_time_weather_request_status_code} = 401</msg>
+<status status="PASS" starttime="20230412 20:33:59.997" endtime="20230412 20:33:59.997"/>
+</kw>
+<status status="PASS" starttime="20230412 20:33:59.394" endtime="20230412 20:33:59.997"/>
+</kw>
+<kw name="User Validate Status Code" library="RealTimeWeather">
+<arg>401</arg>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${real_time_weather_request_status_code}</arg>
+<arg>${expectedCodeStatus}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230412 20:33:59.998" endtime="20230412 20:33:59.999"/>
+</kw>
+<status status="PASS" starttime="20230412 20:33:59.998" endtime="20230412 20:33:59.999"/>
+</kw>
+<kw name="User Validate the Respond Body" library="RealTimeWeather">
+<if>
+<branch type="IF" condition="${real_time_weather_request_status_code} == 200">
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_name}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.000" endtime="20230412 20:34:00.000"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_name}</var>
+<arg>${location_name}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.000" endtime="20230412 20:34:00.000"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_name}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.000" endtime="20230412 20:34:00.000"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_region}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.region</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.001" endtime="20230412 20:34:00.001"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_region}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.001" endtime="20230412 20:34:00.001"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_region}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.001" endtime="20230412 20:34:00.001"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_country}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.country</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.001" endtime="20230412 20:34:00.002"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_country}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.002" endtime="20230412 20:34:00.002"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_country}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.002" endtime="20230412 20:34:00.002"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lat}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.lat</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.002" endtime="20230412 20:34:00.002"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.002" endtime="20230412 20:34:00.002"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.002" endtime="20230412 20:34:00.002"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lat}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.002" endtime="20230412 20:34:00.002"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lon}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.lon</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.003" endtime="20230412 20:34:00.003"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.003" endtime="20230412 20:34:00.003"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.003" endtime="20230412 20:34:00.003"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lon}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.003" endtime="20230412 20:34:00.003"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_tz_id}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.tz_id</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.003" endtime="20230412 20:34:00.003"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_tz_id}</var>
+<arg>${location_tz_id}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.003" endtime="20230412 20:34:00.003"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_tz_id}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.003" endtime="20230412 20:34:00.003"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime_epoch}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.localtime_epoch</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.004" endtime="20230412 20:34:00.004"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.004" endtime="20230412 20:34:00.004"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.004" endtime="20230412 20:34:00.004"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime_epoch}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.004" endtime="20230412 20:34:00.004"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.localtime</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.004" endtime="20230412 20:34:00.004"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime}</var>
+<arg>${location_localtime}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.004" endtime="20230412 20:34:00.004"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.004" endtime="20230412 20:34:00.004"/>
+</kw>
+<status status="NOT RUN" starttime="20230412 20:34:00.000" endtime="20230412 20:34:00.004"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>Error Message is appear on the respond body</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230412 20:34:00.005" level="INFO">Error Message is appear on the respond body</msg>
+<status status="PASS" starttime="20230412 20:34:00.005" endtime="20230412 20:34:00.005"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:00.004" endtime="20230412 20:34:00.005"/>
+</branch>
+<status status="PASS" starttime="20230412 20:33:59.999" endtime="20230412 20:34:00.005"/>
+</if>
+<status status="PASS" starttime="20230412 20:33:59.999" endtime="20230412 20:34:00.005"/>
+</kw>
+<status status="PASS" starttime="20230412 20:33:59.393" endtime="20230412 20:34:00.005"/>
+</test>
+<test id="s1-s1-t5" name="User Get Respond with Invalid X_RapidAPI_Key" line="30">
+<kw name="User Get The Data" library="RealTimeWeather">
+<arg>${invalid_data}</arg>
+<arg>${long_lat}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>X-RapidAPI-Key=${X_RapidAPI_Key}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:34:00.007" level="INFO">${header} = {'X-RapidAPI-Key': '$%^&amp;*()'}</msg>
+<status status="PASS" starttime="20230412 20:34:00.007" endtime="20230412 20:34:00.007"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${params}</var>
+<arg>q=${long_lat}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:34:00.008" level="INFO">${params} = {'q': '-7.7588325,110.4303985'}</msg>
+<status status="PASS" starttime="20230412 20:34:00.007" endtime="20230412 20:34:00.008"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>real_time_weather</arg>
+<arg>${baseURL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230412 20:34:00.008" level="INFO">Creating Session using : alias=real_time_weather, url=https://weatherapi-com.p.rapidapi.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230412 20:34:00.008" endtime="20230412 20:34:00.008"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${real_time_weather_request}</var>
+<arg>real_time_weather</arg>
+<arg>/current.json</arg>
+<arg>params=${params}</arg>
+<arg>headers=${header}</arg>
+<arg>expected_status=Anything</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230412 20:34:00.594" level="INFO">GET Request : url=https://weatherapi-com.p.rapidapi.com/current.json?q=-7.7588325%2C110.4303985 
+ path_url=/current.json?q=-7.7588325%2C110.4303985 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'X-RapidAPI-Key': '$%^&amp;*()'} 
+ body=None 
+ </msg>
+<msg timestamp="20230412 20:34:00.595" level="INFO">GET Response : url=https://weatherapi-com.p.rapidapi.com/current.json?q=-7.7588325%2C110.4303985 
+ status=403, reason=Forbidden 
+ headers={'Date': 'Wed, 12 Apr 2023 13:34:00 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'X-RapidAPI-Version': '1.2.8', 'X-RapidAPI-Region': 'AWS - ap-southeast-1', 'X-RapidAPI-Proxy-Response': 'true', 'Server': 'RapidAPI-1.2.8'} 
+ body={"message":"You are not subscribed to this API."} 
+ </msg>
+<msg timestamp="20230412 20:34:00.595" level="INFO">/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/urllib3/connectionpool.py:1043: InsecureRequestWarning: Unverified HTTPS request is being made to host 'weatherapi-com.p.rapidapi.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20230412 20:34:00.595" level="INFO">${real_time_weather_request} = &lt;Response [403]&gt;</msg>
+<status status="PASS" starttime="20230412 20:34:00.008" endtime="20230412 20:34:00.596"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${real_time_weather_respond}</var>
+<arg>${real_time_weather_request.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230412 20:34:00.598" level="INFO">${real_time_weather_respond} = {'message': 'You are not subscribed to this API.'}</msg>
+<status status="PASS" starttime="20230412 20:34:00.596" endtime="20230412 20:34:00.598"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${real_time_weather_request_status_code}</var>
+<arg>${real_time_weather_request.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230412 20:34:00.599" level="INFO">${real_time_weather_request_status_code} = 403</msg>
+<status status="PASS" starttime="20230412 20:34:00.598" endtime="20230412 20:34:00.599"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${real_time_weather_respond}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:34:00.600" level="INFO">${real_time_weather_respond} = {'message': 'You are not subscribed to this API.'}</msg>
+<status status="PASS" starttime="20230412 20:34:00.599" endtime="20230412 20:34:00.600"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${real_time_weather_request_status_code}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:34:00.601" level="INFO">${real_time_weather_request_status_code} = 403</msg>
+<status status="PASS" starttime="20230412 20:34:00.600" endtime="20230412 20:34:00.601"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:00.006" endtime="20230412 20:34:00.601"/>
+</kw>
+<kw name="User Validate Status Code" library="RealTimeWeather">
+<arg>403</arg>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${real_time_weather_request_status_code}</arg>
+<arg>${expectedCodeStatus}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230412 20:34:00.602" endtime="20230412 20:34:00.603"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:00.602" endtime="20230412 20:34:00.603"/>
+</kw>
+<kw name="User Validate the Respond Body" library="RealTimeWeather">
+<if>
+<branch type="IF" condition="${real_time_weather_request_status_code} == 200">
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_name}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.604" endtime="20230412 20:34:00.604"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_name}</var>
+<arg>${location_name}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.604" endtime="20230412 20:34:00.604"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_name}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.604" endtime="20230412 20:34:00.604"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_region}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.region</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.604" endtime="20230412 20:34:00.604"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_region}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.604" endtime="20230412 20:34:00.604"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_region}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.604" endtime="20230412 20:34:00.604"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_country}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.country</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.604" endtime="20230412 20:34:00.604"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_country}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.605" endtime="20230412 20:34:00.605"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_country}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.605" endtime="20230412 20:34:00.605"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lat}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.lat</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.605" endtime="20230412 20:34:00.605"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.605" endtime="20230412 20:34:00.605"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.605" endtime="20230412 20:34:00.605"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lat}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.605" endtime="20230412 20:34:00.605"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lon}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.lon</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.605" endtime="20230412 20:34:00.605"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.605" endtime="20230412 20:34:00.605"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.606" endtime="20230412 20:34:00.606"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lon}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.606" endtime="20230412 20:34:00.606"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_tz_id}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.tz_id</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.606" endtime="20230412 20:34:00.606"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_tz_id}</var>
+<arg>${location_tz_id}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.606" endtime="20230412 20:34:00.606"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_tz_id}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.606" endtime="20230412 20:34:00.606"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime_epoch}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.localtime_epoch</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.606" endtime="20230412 20:34:00.606"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.606" endtime="20230412 20:34:00.606"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.606" endtime="20230412 20:34:00.606"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime_epoch}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.607" endtime="20230412 20:34:00.607"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime}</var>
+<arg>${real_time_weather_respond}</arg>
+<arg>$.location.localtime</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.607" endtime="20230412 20:34:00.607"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime}</var>
+<arg>${location_localtime}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.607" endtime="20230412 20:34:00.607"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:00.607" endtime="20230412 20:34:00.607"/>
+</kw>
+<status status="NOT RUN" starttime="20230412 20:34:00.603" endtime="20230412 20:34:00.607"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>Error Message is appear on the respond body</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230412 20:34:00.607" level="INFO">Error Message is appear on the respond body</msg>
+<status status="PASS" starttime="20230412 20:34:00.607" endtime="20230412 20:34:00.608"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:00.607" endtime="20230412 20:34:00.608"/>
+</branch>
+<status status="PASS" starttime="20230412 20:34:00.603" endtime="20230412 20:34:00.608"/>
+</if>
+<status status="PASS" starttime="20230412 20:34:00.603" endtime="20230412 20:34:00.608"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:00.006" endtime="20230412 20:34:00.608"/>
+</test>
+<status status="PASS" starttime="20230412 20:33:57.591" endtime="20230412 20:34:00.609"/>
+</suite>
+<suite id="s1-s2" name="TC02-GET-ForecastWeather" source="/Users/rialdyperdana/Documents/Iseng/AutomationPribadi/weather-api-robot-framework/Tests/TC02-GET-ForecastWeather.robot">
+<test id="s1-s2-t1" name="User Get Respond with Valid Data" line="10">
+<kw name="User Get The Data" library="ForecastWeather">
+<arg>${X_RapidAPI_Key}</arg>
+<arg>${country}</arg>
+<arg>${days}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>X-RapidAPI-Key=${X_RapidAPI_Key}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:34:00.629" level="INFO">${header} = {'X-RapidAPI-Key': '5609de86f7mshff37ac23dfeca81p1d8122jsn05613f1f337a'}</msg>
+<status status="PASS" starttime="20230412 20:34:00.629" endtime="20230412 20:34:00.629"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${params}</var>
+<arg>q=${country}</arg>
+<arg>days=${days}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:34:00.630" level="INFO">${params} = {'q': 'Jakarta', 'days': '2'}</msg>
+<status status="PASS" starttime="20230412 20:34:00.629" endtime="20230412 20:34:00.630"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>forecast_weather</arg>
+<arg>${baseURL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230412 20:34:00.630" level="INFO">Creating Session using : alias=forecast_weather, url=https://weatherapi-com.p.rapidapi.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230412 20:34:00.630" endtime="20230412 20:34:00.630"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${forecast_weather_request}</var>
+<arg>forecast_weather</arg>
+<arg>/forecast.json</arg>
+<arg>params=${params}</arg>
+<arg>headers=${header}</arg>
+<arg>expected_status=Anything</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230412 20:34:01.742" level="INFO">GET Request : url=https://weatherapi-com.p.rapidapi.com/forecast.json?q=Jakarta&amp;days=2 
+ path_url=/forecast.json?q=Jakarta&amp;days=2 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'X-RapidAPI-Key': '5609de86f7mshff37ac23dfeca81p1d8122jsn05613f1f337a'} 
+ body=None 
+ </msg>
+<msg timestamp="20230412 20:34:01.742" level="INFO">GET Response : url=https://weatherapi-com.p.rapidapi.com/forecast.json?q=Jakarta&amp;days=2 
+ status=200, reason=OK 
+ headers={'Date': 'Wed, 12 Apr 2023 13:34:02 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Cache-Control': 'public, max-age=180', 'Content-Encoding': 'br', 'Vary': 'Accept-Encoding', 'CDN-EdgeStorageId': '1063', 'CDN-ProxyVer': '1.03', 'CDN-RequestCountryCode': 'SG', 'CDN-RequestPullCode': '200', 'CDN-PullZone': '93447', 'CDN-CachedAt': '04/12/2023 13:34:01', 'CDN-Uid': '8fa3a04a-75d9-4707-8056-b7b33c8ac7fe', 'CDN-Cache': 'MISS', 'CDN-RequestPullSuccess': 'True', 'CDN-RequestId': 'ffa746e9b896b68e2049376ec6ca4e22', 'CDN-Status': '200', 'X-RateLimit-Requests-Limit': '1000000', 'X-RateLimit-Requests-Remaining': '999961', 'X-RateLimit-Requests-Reset': '2484376', 'Server': 'RapidAPI-1.2.8', 'X-RapidAPI-Version': '1.2.8', 'X-RapidAPI-Region': 'AWS - ap-southeast-1'} 
+ body={"location":{"name":"Jakarta","region":"Jakarta Raya","country":"Indonesia","lat":-6.21,"lon":106.85,"tz_id":"Asia/Jakarta","localtime_epoch":1681306441,"localtime":"2023-04-12 20:34"},"current":{"last_updated_epoch":1681306200,"last_updated":"2023-04-12 20:30","temp_c":26.0,"temp_f":78.8,"is_day":0,"condition":{"text":"Partly cloudy","icon":"//cdn.weatherapi.com/weather/64x64/night/116.png","code":1003},"wind_mph":15.0,"wind_kph":24.1,"wind_degree":250,"wind_dir":"WSW","pressure_mb":1010.0,"pressure_in":29.83,"precip_mm":0.0,"precip_in":0.0,"humidity":89,"cloud":25,"feelslike_c":27.4,"feelslike_f":81.4,"vis_km":10.0,"vis_miles":6.0,"uv":1.0,"gust_mph":19.5,"gust_kph":31.3},"forecast":{"forecastday":[{"date":"2023-04-12","date_epoch":1681257600,"day":{"maxtemp_c":34.8,"maxtemp_f":94.6,"mintemp_c":26.7,"mintemp_f":80.1,"avgtemp_c":29.8,"avgtemp_f":85.6,"maxwind_mph":16.8,"maxwind_kph":27.0,"totalprecip_mm":0.4,"totalprecip_in":0.02,"totalsnow_cm":0.0,"avgvis_km":10.0,"avgvis_miles":6.0,"avghumidity":63.0,"daily_will_it_rain":1,"daily_chance_of_rain":87,"daily_will_it_snow":0,"daily_chance_of_snow":0,"condition":{"text":"Patchy rain possible","icon":"//cdn.weatherapi.com/weather/64x64/day/176.png","code":1063},"uv":6.0},"astro":{"sunrise":"05:54 AM","sunset":"05:53 PM","moonrise":"11:18 PM","moonset":"11:13 AM","moon_phase":"Waning Gibbous","moon_illumination":"65","is_moon_up":1,"is_sun_up":1},"hour":[{"time_epoch":1681232400,"time":"2023-04-12 00:00","temp_c":27.8,"temp_f":82.0,"is_day":0,"condition":{"text":"Clear","icon":"//cdn.weatherapi.com/weather/64x64/night/113.png","code":1000},"wind_mph":8.1,"wind_kph":13.0,"wind_degree":243,"wind_dir":"WSW","pressure_mb":1010.0,"pressure_in":29.83,"precip_mm":0.0,"precip_in":0.0,"humidity":70,"cloud":18,"feelslike_c":30.6,"feelslike_f":87.1,"windchill_c":27.8,"windchill_f":82.0,"heatindex_c":30.6,"heatindex_f":87.1,"dewpoint_c":21.9,"dewpoint_f":71.4,"will_it_rain":0,"chance_of_rain":0,"will_it_snow":0,"chance_of_snow":0,"vis_km":10.0,"vis_miles":6.0,"gust_mph":11.2,"gust_kph":18.0,"uv":1.0},{"time_epoch":1681236000,"time":"2023-04-12 01:00","temp_c":27.6,"temp_f":81.7,"is_day":0,"condition":{"text":"Clear","icon":"//cdn.weatherapi.com/weather/64x64/night/113.png","code":1000},"wind_mph":7.4,"wind_kph":11.9,"wind_degree":248,"wind_dir":"WSW","pressure_mb":1010.0,"pressure_in":29.81,"precip_mm":0.0,"precip_in":0.0,"humidity":70,"cloud":22,"feelslike_c":30.2,"feelslike_f":86.4,"windchill_c":27.6,"windchill_f":81.7,"heatindex_c":30.2,"heatindex_f":86.4,"dewpoint_c":21.7,"dewpoint_f":71.1,"will_it_rain":0,"chance_of_rain":0,"will_it_snow":0,"chance_of_snow":0,"vis_km":10.0,"vis_miles":6.0,"gust_mph":10.1,"gust_kph":16.2,"uv":1.0},{"time_epoch":1681239600,"time":"2023-04-12 02:00","temp_c":27.3,"temp_f":81.1,"is_day":0,"condition":{"text":"Clear","icon":"//cdn.weatherapi.com/weather/64x64/night/113.png","code":1000},"wind_mph":8.5,"wind_kph":13.7,"wind_degree":251,"wind_dir":"WSW","pressure_mb":1009.0,"pressure_in":29.79,"precip_mm":0.0,"precip_in":0.0,"humidity":72,"cloud":20,"feelslike_c":29.9,"feelslike_f":85.8,"windchill_c":27.3,"windchill_f":81.1,"heatindex_c":29.9,"heatindex_f":85.8,"dewpoint_c":21.7,"dewpoint_f":71.1,"will_it_rain":0,"chance_of_rain":0,"will_it_snow":0,"chance_of_snow":0,"vis_km":10.0,"vis_miles":6.0,"gust_mph":11.6,"gust_kph":18.7,"uv":1.0},{"time_epoch":1681243200,"time":"2023-04-12 03:00","temp_c":27.1,"temp_f":80.8,"is_day":0,"condition":{"text":"Clear","icon":"//cdn.weatherapi.com/weather/64x64/night/113.png","code":1000},"wind_mph":8.3,"wind_kph":13.3,"wind_degree":243,"wind_dir":"WSW","pressure_mb":1008.0,"pressure_in":29.77,"precip_mm":0.0,"precip_in":0.0,"humidity":73,"cloud":21,"feelslike_c":29.7,"feelslike_f":85.5,"windchill_c":27.1,"windchill_f":80.8,"heatindex_c":29.7,"heatindex_f":85.5,"dewpoint_c":21.8,"dewpoint_f":71.2,"will_it_rain":0,"chance_of_rain":0,"will_it_snow":0,"chance_of_snow":0,"vis_km":10.0,"vis_miles":6.0,"gust_mph":11.2,"gust_kph":18.0,"uv":1.0},{"time_epoch":1681246800,"time":"2023-04-12 04:00","temp_c":26.9,"temp_f":80.4,"is_day":0,"condition":{"text":"Clear","icon":"//cdn.weatherapi.com/weather/64x64/night/113.png","code":1000},"wind_mph":7.4,"wind_kph":11.9,"wind_degree":241,"wind_dir":"WSW","pressure_mb":1008.0,"pressure_in":29.77,"precip_mm":0.0,"precip_in":0.0,"humidity":73,"cloud":21,"feelslike_c":29.4,"feelslike_f":84.9,"windchill_c":26.9,"windchill_f":80.4,"heatindex_c":29.4,"heatindex_f":84.9,"dewpoint_c":21.8,"dewpoint_f":71.2,"will_it_rain":0,"chance_of_rain":0,"will_it_snow":0,"chance_of_snow":0,"vis_km":10.0,"vis_miles":6.0,"gust_mph":10.1,"gust_kph":16.2,"uv":1.0},{"time_epoch":1681250400,"time":"2023-04-12 05:00","temp_c":26.8,"temp_f":80.2,"is_day":0,"condition":{"text":"Clear","icon":"//cdn.weatherapi.com/weather/64x64/night/113.png","code":1000},"wind_mph":7.2,"wind_kph":11.5,"wind_degree":241,"wind_dir":"WSW","pressure_mb":1008.0,"pressure_in":29.77,"precip_mm":0.0,"precip_in":0.0,"humidity":74,"cloud":16,"feelslike_c":29.3,"feelslike_f":84.7,"windchill_c":26.8,"windchill_f":80.2,"heatindex_c":29.3,"heatindex_f":84.7,"dewpoint_c":21.7,"dewpoint_f":71.1,"will_it_rain":0,"chance_of_rain":0,"will_it_snow":0,"chance_of_snow":0,"vis_km":10.0,"vis_miles":6.0,"gust_mph":9.8,"gust_kph":15.8,"uv":1.0},{"time_epoch":1681254000,"time":"2023-04-12 06:00","temp_c":26.8,"temp_f":80.2,"is_day":1,"condition":{"text":"Sunny","icon":"//cdn.weatherapi.com/weather/64x64/day/113.png","code":1000},"wind_mph":5.6,"wind_kph":9.0,"wind_degree":238,"wind_dir":"WSW","pressure_mb":1009.0,"pressure_in":29.79,"precip_mm":0.0,"precip_in":0.0,"humidity":74,"cloud":19,"feelslike_c":29.3,"feelslike_f":84.7,"windchill_c":26.8,"windchill_f":80.2,"heatindex_c":29.3,"heatindex_f":84.7,"dewpoint_c":21.7,"dewpoint_f":71.1,"will_it_rain":0,"chance_of_rain":0,"will_it_snow":0,"chance_of_snow":0,"vis_km":10.0,"vis_miles":6.0,"gust_mph":7.6,"gust_kph":12.2,"uv":7.0},{"time_epoch":1681257600,"time":"2023-04-12 07:00","temp_c":26.7,"temp_f":80.1,"is_day":1,"condition":{"text":"Sunny","icon":"//cdn.weatherapi.com/weather/64x64/day/113.png","code":1000},"wind_mph":4.9,"wind_kph":7.9,"wind_degree":231,"wind_dir":"SW","pressure_mb":1010.0,"pressure_in":29.82,"precip_mm":0.0,"precip_in":0.0,"humidity":74,"cloud":24,"feelslike_c":29.1,"feelslike_f":84.4,"windchill_c":26.7,"windchill_f":80.1,"heatindex_c":29.1,"heatindex_f":84.4,"dewpoint_c":21.7,"dewpoint_f":71.1,"will_it_rain":0,"chance_of_rain":0,"will_it_snow":0,"chance_of_snow":0,"vis_km":10.0,"vis_miles":6.0,"gust_mph":6.9,"gust_kph":11.2,"uv":7.0},{"time_epoch":1681261200,"time":"2023-04-12 08:00","temp_c":27.2,"temp_f":81.0,"is_day":1,"condition":{"text":"Patchy rain possible","icon":"//cdn.weatherapi.com/weather/64x64/day/176.png","code":1063},"wind_mph":4.9,"wind_kph":7.9,"wind_degree":231,"wind_dir":"SW","pressure_mb":1011.0,"pressure_in":29.84,"precip_mm":0.2,"precip_in":0.01,"humidity":72,"cloud":79,"feelslike_c":29.8,"feelslike_f":85.6,"windchill_c":27.2,"windchill_f":81.0,"heatindex_c":29.8,"heatindex_f":85.6,"dewpoint_c":21.8,"dewpoint_f":71.2,"will_it_rain":0,"chance_of_rain":66,"will_it_snow":0,"chance_of_snow":0,"vis_km":9.0,"vis_miles":5.0,"gust_mph":6.3,"gust_kph":10.1,"uv":6.0},{"time_epoch":1681264800,"time":"2023-04-12 09:00","temp_c":28.2,"temp_f":82.8,"is_day":1,"condition":{"text":"Patchy rain possible","icon":"//cdn.weatherapi.com/weather/64x64/day/176.png","code":1063},"wind_mph":5.6,"wind_kph":9.0,"wind_degree":227,"wind_dir":"SW","pressure_mb":1011.0,"pressure_in":29.86,"precip_mm":0.1,"precip_in":0.0,"humidity":68,"cloud":89,"feelslike_c":30.9,"feelslike_f":87.6,"windchill_c":28.2,"windchill_f":82.8,"heatindex_c":30.9,"heatindex_f":87.6,"dewpoint_c":21.6,"dewpoint_f":70.9,"will_it_rain":0,"chance_of_rain":61,"will_it_snow":0,"chance_of_snow":0,"vis_km":10.0,"vis_miles":6.0,"gust_mph":6.7,"gust_kph":10.8,"uv":6.0},{"time_epoch":1681268400,"time":"2023-04-12 10:00","temp_c":29.8,"temp_f":85.6,"is_day":1,"condition":{"text":"Sunny","icon":"//cdn.weatherapi.com/weather/64x64/day/113.png","code":1000},"wind_mph":5.8,"wind_kph":9.4,"wind_degree":233,"wind_dir":"SW","pressure_mb":1011.0,"pressure_in":29.86,"precip_mm":0.0,"precip_in":0.0,"humidity":61,"cloud":22,"feelslike_c":32.9,"feelslike_f":91.2,"windchill_c":29.8,"windchill_f":85.6,"heatindex_c":32.9,"heatindex_f":91.2,"dewpoint_c":21.5,"dewpoint_f":70.7,"will_it_rain":0,"chance_of_rain":0,"will_it_snow":0,"chance_of_snow":0,"vis_km":10.0,"vis_miles":6.0,"gust_mph":6.7,"gust_kph":10.8,"uv":7.0},{"time_epoch":1681272000,"time":"2023-04-12 11:00","temp_c":33.3,"temp_f":91.9,"is_day":1,"condition":{"text":"Patchy rain possible","icon":"//cdn.weatherapi.com/weather/64x64/day/176.png","code":1063},"wind_mph":6.5,"wind_kph":10.4,"wind_degree":244,"wind_dir":"WSW","pressure_mb":1011.0,"pressure_in":29.84,"precip_mm":0.1,"precip_in":0.0,"humidity":55,"cloud":81,"feelslike_c":38.8,"feelslike_f":101.8,"windchill_c":33.3,"windchill_f":91.9,"heatindex_c":38.8,"heatindex_f":101.8,"dewpoint_c":23.0,"dewpoint_f":73.4,"will_it_rain":1,"chance_of_rain":87,"will_it_snow":0,"chance_of_snow":0,"vis_km":10.0,"vis_miles":6.0,"gust_mph":7.4,"gust_kph":11.9,"uv":7.0},{"time_epoch":1681275600,"time":"2023-04-12 12:00","temp_c":34.0,"temp_f":93.2,"is_day":1,"condition":{"text":"Partly cloudy","icon":"//cdn.weatherapi.com/weather/64x64/day/116.png","code":1003},"wind_mph":7.4,"wind_kph":11.9,"wind_degree":261,"wind_dir":"W","pressure_mb":1010.0,"pressure_in":29.81,"precip_mm":0.0,"precip_in":0.0,"humidity":51,"cloud":47,"feelslike_c":39.1,"feelslike_f":102.4,"windchill_c":34.0,"windchill_f":93.2,"heatindex_c":39.1,"heatindex_f":102.4,"dewpoint_c":22.3,"dewpoint_f":72.1,"will_it_rain":0,"chance_of_rain":0,"will_it_snow":0,"chance_of_snow":0,"vis_km":10.0,"vis_miles":6.0,"gust_mph":8.5,"gust_kph":13.7,"uv":8.0},{"time_epoch":1681279200,"time":"2023-04-12 13:00","temp_c":34.8,"temp_f":94.6,"is_day":1,"condition":{"text":"Partly cloudy","icon":"//cd... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg timestamp="20230412 20:34:01.743" level="INFO">/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/urllib3/connectionpool.py:1043: InsecureRequestWarning: Unverified HTTPS request is being made to host 'weatherapi-com.p.rapidapi.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20230412 20:34:01.743" level="INFO">${forecast_weather_request} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230412 20:34:00.630" endtime="20230412 20:34:01.743"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${forecast_weather_respond}</var>
+<arg>${forecast_weather_request.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230412 20:34:01.747" level="INFO">${forecast_weather_respond} = {'location': {'name': 'Jakarta', 'region': 'Jakarta Raya', 'country': 'Indonesia', 'lat': -6.21, 'lon': 106.85, 'tz_id': 'Asia/Jakarta', 'localtime_epoch': 1681306441, 'localtime': '2023-04-12 20:34'}...</msg>
+<status status="PASS" starttime="20230412 20:34:01.744" endtime="20230412 20:34:01.747"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${forecast_weather_request_status_code}</var>
+<arg>${forecast_weather_request.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230412 20:34:01.749" level="INFO">${forecast_weather_request_status_code} = 200</msg>
+<status status="PASS" starttime="20230412 20:34:01.748" endtime="20230412 20:34:01.749"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${forecast_weather_respond}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:34:01.751" level="INFO">${forecast_weather_respond} = {'location': {'name': 'Jakarta', 'region': 'Jakarta Raya', 'country': 'Indonesia', 'lat': -6.21, 'lon': 106.85, 'tz_id': 'Asia/Jakarta', 'localtime_epoch': 1681306441, 'localtime': '2023-04-12 20:34'}...</msg>
+<status status="PASS" starttime="20230412 20:34:01.749" endtime="20230412 20:34:01.751"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${forecast_weather_request_status_code}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:34:01.752" level="INFO">${forecast_weather_request_status_code} = 200</msg>
+<status status="PASS" starttime="20230412 20:34:01.751" endtime="20230412 20:34:01.752"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:00.628" endtime="20230412 20:34:01.752"/>
+</kw>
+<kw name="User Validate Status Code" library="ForecastWeather">
+<arg>200</arg>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${forecast_weather_request_status_code}</arg>
+<arg>${expectedCodeStatus}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230412 20:34:01.753" endtime="20230412 20:34:01.753"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:01.752" endtime="20230412 20:34:01.753"/>
+</kw>
+<kw name="User Validate the Respond Body" library="ForecastWeather">
+<if>
+<branch type="IF" condition="${forecast_weather_request_status_code} == 200">
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_name}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230412 20:34:01.777" level="INFO">${location_name} = ['Jakarta']</msg>
+<status status="PASS" starttime="20230412 20:34:01.754" endtime="20230412 20:34:01.777"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_name}</var>
+<arg>${location_name}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230412 20:34:01.778" level="INFO">${location_name} = Jakarta</msg>
+<status status="PASS" starttime="20230412 20:34:01.778" endtime="20230412 20:34:01.778"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_name}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20230412 20:34:01.778" level="INFO">Length is 7</msg>
+<status status="PASS" starttime="20230412 20:34:01.778" endtime="20230412 20:34:01.778"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_region}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.region</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230412 20:34:01.796" level="INFO">${location_region} = ['Jakarta Raya']</msg>
+<status status="PASS" starttime="20230412 20:34:01.778" endtime="20230412 20:34:01.796"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_region}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230412 20:34:01.796" level="INFO">${location_region} = Jakarta Raya</msg>
+<status status="PASS" starttime="20230412 20:34:01.796" endtime="20230412 20:34:01.796"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_region}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20230412 20:34:01.796" level="INFO">Length is 12</msg>
+<status status="PASS" starttime="20230412 20:34:01.796" endtime="20230412 20:34:01.796"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_country}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.country</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230412 20:34:01.810" level="INFO">${location_country} = ['Indonesia']</msg>
+<status status="PASS" starttime="20230412 20:34:01.796" endtime="20230412 20:34:01.810"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_country}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230412 20:34:01.810" level="INFO">${location_region} = Indonesia</msg>
+<status status="PASS" starttime="20230412 20:34:01.810" endtime="20230412 20:34:01.810"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_country}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20230412 20:34:01.810" level="INFO">Length is 1</msg>
+<status status="PASS" starttime="20230412 20:34:01.810" endtime="20230412 20:34:01.810"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lat}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.lat</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230412 20:34:01.821" level="INFO">${location_lat} = [-6.21]</msg>
+<status status="PASS" starttime="20230412 20:34:01.810" endtime="20230412 20:34:01.821"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230412 20:34:01.822" level="INFO">${location_lat} = -6.21</msg>
+<status status="PASS" starttime="20230412 20:34:01.821" endtime="20230412 20:34:01.822"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230412 20:34:01.822" level="INFO">${location_lat} = -6.21</msg>
+<status status="PASS" starttime="20230412 20:34:01.822" endtime="20230412 20:34:01.822"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lat}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20230412 20:34:01.822" level="INFO">Length is 5</msg>
+<status status="PASS" starttime="20230412 20:34:01.822" endtime="20230412 20:34:01.822"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lon}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.lon</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230412 20:34:01.832" level="INFO">${location_lon} = [106.85]</msg>
+<status status="PASS" starttime="20230412 20:34:01.822" endtime="20230412 20:34:01.832"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230412 20:34:01.833" level="INFO">${location_lon} = 106.85</msg>
+<status status="PASS" starttime="20230412 20:34:01.832" endtime="20230412 20:34:01.833"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230412 20:34:01.833" level="INFO">${location_lon} = 106.85</msg>
+<status status="PASS" starttime="20230412 20:34:01.833" endtime="20230412 20:34:01.833"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lon}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20230412 20:34:01.833" level="INFO">Length is 6</msg>
+<status status="PASS" starttime="20230412 20:34:01.833" endtime="20230412 20:34:01.833"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_tz_id}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.tz_id</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230412 20:34:01.842" level="INFO">${location_tz_id} = ['Asia/Jakarta']</msg>
+<status status="PASS" starttime="20230412 20:34:01.833" endtime="20230412 20:34:01.842"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_tz_id}</var>
+<arg>${location_tz_id}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230412 20:34:01.842" level="INFO">${location_tz_id} = Asia/Jakarta</msg>
+<status status="PASS" starttime="20230412 20:34:01.842" endtime="20230412 20:34:01.842"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_tz_id}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20230412 20:34:01.843" level="INFO">Length is 12</msg>
+<status status="PASS" starttime="20230412 20:34:01.842" endtime="20230412 20:34:01.843"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime_epoch}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.localtime_epoch</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230412 20:34:01.852" level="INFO">${location_localtime_epoch} = [1681306441]</msg>
+<status status="PASS" starttime="20230412 20:34:01.843" endtime="20230412 20:34:01.852"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230412 20:34:01.852" level="INFO">${location_localtime_epoch} = 1681306441</msg>
+<status status="PASS" starttime="20230412 20:34:01.852" endtime="20230412 20:34:01.852"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230412 20:34:01.852" level="INFO">${location_localtime_epoch} = 1681306441</msg>
+<status status="PASS" starttime="20230412 20:34:01.852" endtime="20230412 20:34:01.852"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime_epoch}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20230412 20:34:01.852" level="INFO">Length is 10</msg>
+<status status="PASS" starttime="20230412 20:34:01.852" endtime="20230412 20:34:01.852"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.localtime</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230412 20:34:01.861" level="INFO">${location_localtime} = ['2023-04-12 20:34']</msg>
+<status status="PASS" starttime="20230412 20:34:01.852" endtime="20230412 20:34:01.861"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime}</var>
+<arg>${location_localtime}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230412 20:34:01.862" level="INFO">${location_localtime} = 2023-04-12 20:34</msg>
+<status status="PASS" starttime="20230412 20:34:01.861" endtime="20230412 20:34:01.862"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20230412 20:34:01.862" level="INFO">Length is 16</msg>
+<status status="PASS" starttime="20230412 20:34:01.862" endtime="20230412 20:34:01.862"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:01.754" endtime="20230412 20:34:01.862"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>Error Message is appear on the respond body</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:01.862" endtime="20230412 20:34:01.862"/>
+</kw>
+<status status="NOT RUN" starttime="20230412 20:34:01.862" endtime="20230412 20:34:01.862"/>
+</branch>
+<status status="PASS" starttime="20230412 20:34:01.753" endtime="20230412 20:34:01.862"/>
+</if>
+<status status="PASS" starttime="20230412 20:34:01.753" endtime="20230412 20:34:01.862"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:00.628" endtime="20230412 20:34:01.862"/>
+</test>
+<test id="s1-s2-t2" name="User Get Respond with Empty q" line="15">
+<kw name="User Get The Data" library="ForecastWeather">
+<arg>${X_RapidAPI_Key}</arg>
+<arg>${empty_value}</arg>
+<arg>${days}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>X-RapidAPI-Key=${X_RapidAPI_Key}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:34:01.863" level="INFO">${header} = {'X-RapidAPI-Key': '5609de86f7mshff37ac23dfeca81p1d8122jsn05613f1f337a'}</msg>
+<status status="PASS" starttime="20230412 20:34:01.863" endtime="20230412 20:34:01.863"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${params}</var>
+<arg>q=${country}</arg>
+<arg>days=${days}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:34:01.863" level="INFO">${params} = {'q': '', 'days': '2'}</msg>
+<status status="PASS" starttime="20230412 20:34:01.863" endtime="20230412 20:34:01.863"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>forecast_weather</arg>
+<arg>${baseURL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230412 20:34:01.863" level="INFO">Creating Session using : alias=forecast_weather, url=https://weatherapi-com.p.rapidapi.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230412 20:34:01.863" endtime="20230412 20:34:01.863"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${forecast_weather_request}</var>
+<arg>forecast_weather</arg>
+<arg>/forecast.json</arg>
+<arg>params=${params}</arg>
+<arg>headers=${header}</arg>
+<arg>expected_status=Anything</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230412 20:34:02.644" level="INFO">GET Request : url=https://weatherapi-com.p.rapidapi.com/forecast.json?q=&amp;days=2 
+ path_url=/forecast.json?q=&amp;days=2 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'X-RapidAPI-Key': '5609de86f7mshff37ac23dfeca81p1d8122jsn05613f1f337a'} 
+ body=None 
+ </msg>
+<msg timestamp="20230412 20:34:02.645" level="INFO">GET Response : url=https://weatherapi-com.p.rapidapi.com/forecast.json?q=&amp;days=2 
+ status=400, reason=Bad Request 
+ headers={'Date': 'Wed, 12 Apr 2023 13:34:03 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Cache-Control': 'public, max-age=5', 'CDN-EdgeStorageId': '1097', 'CDN-ProxyVer': '1.03', 'CDN-RequestCountryCode': 'SG', 'CDN-RequestPullCode': '400', 'CDN-PullZone': '93447', 'CDN-CachedAt': '04/12/2023 13:34:02', 'CDN-Uid': '8fa3a04a-75d9-4707-8056-b7b33c8ac7fe', 'CDN-Cache': 'EXPIRED', 'CDN-RequestId': '7ef620262383c3dd9bccccef2876f47e', 'CDN-RequestPullSuccess': 'True', 'CDN-Status': '400', 'X-RateLimit-Requests-Limit': '1000000', 'X-RateLimit-Requests-Remaining': '999960', 'X-RateLimit-Requests-Reset': '2484375', 'Server': 'RapidAPI-1.2.8', 'X-RapidAPI-Version': '1.2.8', 'X-RapidAPI-Region': 'AWS - ap-southeast-1'} 
+ body={"error":{"code":1003,"message":"Parameter q is missing."}} 
+ </msg>
+<msg timestamp="20230412 20:34:02.646" level="INFO">/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/urllib3/connectionpool.py:1043: InsecureRequestWarning: Unverified HTTPS request is being made to host 'weatherapi-com.p.rapidapi.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20230412 20:34:02.646" level="INFO">${forecast_weather_request} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20230412 20:34:01.863" endtime="20230412 20:34:02.646"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${forecast_weather_respond}</var>
+<arg>${forecast_weather_request.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230412 20:34:02.648" level="INFO">${forecast_weather_respond} = {'error': {'code': 1003, 'message': 'Parameter q is missing.'}}</msg>
+<status status="PASS" starttime="20230412 20:34:02.646" endtime="20230412 20:34:02.648"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${forecast_weather_request_status_code}</var>
+<arg>${forecast_weather_request.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230412 20:34:02.649" level="INFO">${forecast_weather_request_status_code} = 400</msg>
+<status status="PASS" starttime="20230412 20:34:02.648" endtime="20230412 20:34:02.649"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${forecast_weather_respond}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:34:02.650" level="INFO">${forecast_weather_respond} = {'error': {'code': 1003, 'message': 'Parameter q is missing.'}}</msg>
+<status status="PASS" starttime="20230412 20:34:02.649" endtime="20230412 20:34:02.650"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${forecast_weather_request_status_code}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:34:02.651" level="INFO">${forecast_weather_request_status_code} = 400</msg>
+<status status="PASS" starttime="20230412 20:34:02.650" endtime="20230412 20:34:02.651"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:01.862" endtime="20230412 20:34:02.651"/>
+</kw>
+<kw name="User Validate Status Code" library="ForecastWeather">
+<arg>400</arg>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${forecast_weather_request_status_code}</arg>
+<arg>${expectedCodeStatus}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230412 20:34:02.652" endtime="20230412 20:34:02.653"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:02.651" endtime="20230412 20:34:02.653"/>
+</kw>
+<kw name="User Validate the Respond Body" library="ForecastWeather">
+<if>
+<branch type="IF" condition="${forecast_weather_request_status_code} == 200">
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_name}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.654" endtime="20230412 20:34:02.654"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_name}</var>
+<arg>${location_name}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.654" endtime="20230412 20:34:02.654"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_name}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.654" endtime="20230412 20:34:02.654"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_region}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.region</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.654" endtime="20230412 20:34:02.654"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_region}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.654" endtime="20230412 20:34:02.654"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_region}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.654" endtime="20230412 20:34:02.654"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_country}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.country</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.654" endtime="20230412 20:34:02.654"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_country}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.654" endtime="20230412 20:34:02.655"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_country}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.655" endtime="20230412 20:34:02.655"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lat}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.lat</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.655" endtime="20230412 20:34:02.655"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.655" endtime="20230412 20:34:02.655"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.655" endtime="20230412 20:34:02.655"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lat}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.655" endtime="20230412 20:34:02.655"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lon}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.lon</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.655" endtime="20230412 20:34:02.655"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.655" endtime="20230412 20:34:02.655"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.655" endtime="20230412 20:34:02.656"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lon}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.656" endtime="20230412 20:34:02.656"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_tz_id}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.tz_id</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.656" endtime="20230412 20:34:02.656"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_tz_id}</var>
+<arg>${location_tz_id}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.656" endtime="20230412 20:34:02.656"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_tz_id}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.656" endtime="20230412 20:34:02.656"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime_epoch}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.localtime_epoch</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.656" endtime="20230412 20:34:02.656"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.656" endtime="20230412 20:34:02.656"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.656" endtime="20230412 20:34:02.657"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime_epoch}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.657" endtime="20230412 20:34:02.657"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.localtime</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.657" endtime="20230412 20:34:02.657"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime}</var>
+<arg>${location_localtime}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.657" endtime="20230412 20:34:02.657"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.657" endtime="20230412 20:34:02.657"/>
+</kw>
+<status status="NOT RUN" starttime="20230412 20:34:02.653" endtime="20230412 20:34:02.657"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>Error Message is appear on the respond body</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230412 20:34:02.657" level="INFO">Error Message is appear on the respond body</msg>
+<status status="PASS" starttime="20230412 20:34:02.657" endtime="20230412 20:34:02.657"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:02.657" endtime="20230412 20:34:02.657"/>
+</branch>
+<status status="PASS" starttime="20230412 20:34:02.653" endtime="20230412 20:34:02.657"/>
+</if>
+<status status="PASS" starttime="20230412 20:34:02.653" endtime="20230412 20:34:02.658"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:01.862" endtime="20230412 20:34:02.658"/>
+</test>
+<test id="s1-s2-t3" name="User Get Respond with Invalid q" line="20">
+<kw name="User Get The Data" library="ForecastWeather">
+<arg>${X_RapidAPI_Key}</arg>
+<arg>${invalid_data}</arg>
+<arg>${days}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>X-RapidAPI-Key=${X_RapidAPI_Key}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:34:02.660" level="INFO">${header} = {'X-RapidAPI-Key': '5609de86f7mshff37ac23dfeca81p1d8122jsn05613f1f337a'}</msg>
+<status status="PASS" starttime="20230412 20:34:02.659" endtime="20230412 20:34:02.660"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${params}</var>
+<arg>q=${country}</arg>
+<arg>days=${days}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:34:02.660" level="INFO">${params} = {'q': '$%^&amp;*()', 'days': '2'}</msg>
+<status status="PASS" starttime="20230412 20:34:02.660" endtime="20230412 20:34:02.660"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>forecast_weather</arg>
+<arg>${baseURL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230412 20:34:02.661" level="INFO">Creating Session using : alias=forecast_weather, url=https://weatherapi-com.p.rapidapi.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230412 20:34:02.661" endtime="20230412 20:34:02.661"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${forecast_weather_request}</var>
+<arg>forecast_weather</arg>
+<arg>/forecast.json</arg>
+<arg>params=${params}</arg>
+<arg>headers=${header}</arg>
+<arg>expected_status=Anything</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230412 20:34:02.990" level="INFO">GET Request : url=https://weatherapi-com.p.rapidapi.com/forecast.json?q=%24%25%5E%26%2A%28%29&amp;days=2 
+ path_url=/forecast.json?q=%24%25%5E%26%2A%28%29&amp;days=2 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'X-RapidAPI-Key': '5609de86f7mshff37ac23dfeca81p1d8122jsn05613f1f337a'} 
+ body=None 
+ </msg>
+<msg timestamp="20230412 20:34:02.990" level="INFO">GET Response : url=https://weatherapi-com.p.rapidapi.com/forecast.json?q=%24%25%5E%26%2A%28%29&amp;days=2 
+ status=400, reason=Bad Request 
+ headers={'Date': 'Wed, 12 Apr 2023 13:34:03 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Cache-Control': 'public, max-age=5', 'CDN-EdgeStorageId': '979', 'CDN-ProxyVer': '1.03', 'CDN-RequestCountryCode': 'SG', 'CDN-RequestPullCode': '400', 'CDN-PullZone': '93447', 'CDN-CachedAt': '04/12/2023 13:34:03', 'CDN-Uid': '8fa3a04a-75d9-4707-8056-b7b33c8ac7fe', 'CDN-Cache': 'EXPIRED', 'CDN-RequestId': 'f3d4399c15af1f5a7b30900316f84038', 'CDN-RequestPullSuccess': 'True', 'CDN-Status': '400', 'X-RateLimit-Requests-Limit': '1000000', 'X-RateLimit-Requests-Remaining': '999959', 'X-RateLimit-Requests-Reset': '2484375', 'Server': 'RapidAPI-1.2.8', 'X-RapidAPI-Version': '1.2.8', 'X-RapidAPI-Region': 'AWS - ap-southeast-1'} 
+ body={"error":{"code":1006,"message":"No matching location found."}} 
+ </msg>
+<msg timestamp="20230412 20:34:02.990" level="INFO">/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/urllib3/connectionpool.py:1043: InsecureRequestWarning: Unverified HTTPS request is being made to host 'weatherapi-com.p.rapidapi.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20230412 20:34:02.990" level="INFO">${forecast_weather_request} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20230412 20:34:02.661" endtime="20230412 20:34:02.990"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${forecast_weather_respond}</var>
+<arg>${forecast_weather_request.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230412 20:34:02.992" level="INFO">${forecast_weather_respond} = {'error': {'code': 1006, 'message': 'No matching location found.'}}</msg>
+<status status="PASS" starttime="20230412 20:34:02.991" endtime="20230412 20:34:02.992"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${forecast_weather_request_status_code}</var>
+<arg>${forecast_weather_request.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230412 20:34:02.993" level="INFO">${forecast_weather_request_status_code} = 400</msg>
+<status status="PASS" starttime="20230412 20:34:02.992" endtime="20230412 20:34:02.993"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${forecast_weather_respond}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:34:02.993" level="INFO">${forecast_weather_respond} = {'error': {'code': 1006, 'message': 'No matching location found.'}}</msg>
+<status status="PASS" starttime="20230412 20:34:02.993" endtime="20230412 20:34:02.994"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${forecast_weather_request_status_code}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:34:02.994" level="INFO">${forecast_weather_request_status_code} = 400</msg>
+<status status="PASS" starttime="20230412 20:34:02.994" endtime="20230412 20:34:02.994"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:02.659" endtime="20230412 20:34:02.994"/>
+</kw>
+<kw name="User Validate Status Code" library="ForecastWeather">
+<arg>400</arg>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${forecast_weather_request_status_code}</arg>
+<arg>${expectedCodeStatus}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230412 20:34:02.995" endtime="20230412 20:34:02.996"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:02.995" endtime="20230412 20:34:02.996"/>
+</kw>
+<kw name="User Validate the Respond Body" library="ForecastWeather">
+<if>
+<branch type="IF" condition="${forecast_weather_request_status_code} == 200">
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_name}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.997" endtime="20230412 20:34:02.997"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_name}</var>
+<arg>${location_name}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.997" endtime="20230412 20:34:02.997"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_name}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.997" endtime="20230412 20:34:02.997"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_region}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.region</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.997" endtime="20230412 20:34:02.997"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_region}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.997" endtime="20230412 20:34:02.998"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_region}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.998" endtime="20230412 20:34:02.998"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_country}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.country</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.998" endtime="20230412 20:34:02.998"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_country}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.998" endtime="20230412 20:34:02.998"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_country}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.998" endtime="20230412 20:34:02.998"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lat}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.lat</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.998" endtime="20230412 20:34:02.998"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.998" endtime="20230412 20:34:02.998"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.998" endtime="20230412 20:34:02.998"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lat}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.999" endtime="20230412 20:34:02.999"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lon}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.lon</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.999" endtime="20230412 20:34:02.999"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.999" endtime="20230412 20:34:02.999"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.999" endtime="20230412 20:34:02.999"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lon}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.999" endtime="20230412 20:34:02.999"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_tz_id}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.tz_id</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.999" endtime="20230412 20:34:02.999"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_tz_id}</var>
+<arg>${location_tz_id}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.999" endtime="20230412 20:34:02.999"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_tz_id}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:02.999" endtime="20230412 20:34:02.999"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime_epoch}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.localtime_epoch</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.000" endtime="20230412 20:34:03.000"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.000" endtime="20230412 20:34:03.000"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.000" endtime="20230412 20:34:03.000"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime_epoch}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.000" endtime="20230412 20:34:03.000"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.localtime</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.000" endtime="20230412 20:34:03.000"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime}</var>
+<arg>${location_localtime}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.000" endtime="20230412 20:34:03.000"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.000" endtime="20230412 20:34:03.000"/>
+</kw>
+<status status="NOT RUN" starttime="20230412 20:34:02.997" endtime="20230412 20:34:03.001"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>Error Message is appear on the respond body</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230412 20:34:03.001" level="INFO">Error Message is appear on the respond body</msg>
+<status status="PASS" starttime="20230412 20:34:03.001" endtime="20230412 20:34:03.001"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:03.001" endtime="20230412 20:34:03.001"/>
+</branch>
+<status status="PASS" starttime="20230412 20:34:02.996" endtime="20230412 20:34:03.001"/>
+</if>
+<status status="PASS" starttime="20230412 20:34:02.996" endtime="20230412 20:34:03.001"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:02.658" endtime="20230412 20:34:03.001"/>
+</test>
+<test id="s1-s2-t4" name="User Get Respond with Empty Days" line="25">
+<kw name="User Get The Data" library="ForecastWeather">
+<arg>${X_RapidAPI_Key}</arg>
+<arg>${invalid_data}</arg>
+<arg>${empty_value}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>X-RapidAPI-Key=${X_RapidAPI_Key}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:34:03.003" level="INFO">${header} = {'X-RapidAPI-Key': '5609de86f7mshff37ac23dfeca81p1d8122jsn05613f1f337a'}</msg>
+<status status="PASS" starttime="20230412 20:34:03.003" endtime="20230412 20:34:03.004"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${params}</var>
+<arg>q=${country}</arg>
+<arg>days=${days}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:34:03.004" level="INFO">${params} = {'q': '$%^&amp;*()', 'days': ''}</msg>
+<status status="PASS" starttime="20230412 20:34:03.004" endtime="20230412 20:34:03.004"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>forecast_weather</arg>
+<arg>${baseURL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230412 20:34:03.005" level="INFO">Creating Session using : alias=forecast_weather, url=https://weatherapi-com.p.rapidapi.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230412 20:34:03.004" endtime="20230412 20:34:03.005"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${forecast_weather_request}</var>
+<arg>forecast_weather</arg>
+<arg>/forecast.json</arg>
+<arg>params=${params}</arg>
+<arg>headers=${header}</arg>
+<arg>expected_status=Anything</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230412 20:34:03.779" level="INFO">GET Request : url=https://weatherapi-com.p.rapidapi.com/forecast.json?q=%24%25%5E%26%2A%28%29&amp;days= 
+ path_url=/forecast.json?q=%24%25%5E%26%2A%28%29&amp;days= 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'X-RapidAPI-Key': '5609de86f7mshff37ac23dfeca81p1d8122jsn05613f1f337a'} 
+ body=None 
+ </msg>
+<msg timestamp="20230412 20:34:03.779" level="INFO">GET Response : url=https://weatherapi-com.p.rapidapi.com/forecast.json?q=%24%25%5E%26%2A%28%29&amp;days= 
+ status=400, reason=Bad Request 
+ headers={'Date': 'Wed, 12 Apr 2023 13:34:04 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Cache-Control': 'public, max-age=5', 'CDN-EdgeStorageId': '1097', 'CDN-ProxyVer': '1.03', 'CDN-RequestCountryCode': 'SG', 'CDN-RequestPullCode': '400', 'CDN-PullZone': '93447', 'CDN-CachedAt': '04/12/2023 13:34:04', 'CDN-Uid': '8fa3a04a-75d9-4707-8056-b7b33c8ac7fe', 'CDN-Cache': 'MISS', 'CDN-RequestId': '5e375f1fddbcd17b278d2ff75f982618', 'CDN-RequestPullSuccess': 'True', 'CDN-Status': '400', 'X-RateLimit-Requests-Limit': '1000000', 'X-RateLimit-Requests-Remaining': '999958', 'X-RateLimit-Requests-Reset': '2484374', 'Server': 'RapidAPI-1.2.8', 'X-RapidAPI-Version': '1.2.8', 'X-RapidAPI-Region': 'AWS - ap-southeast-1'} 
+ body={"error":{"code":1006,"message":"No matching location found."}} 
+ </msg>
+<msg timestamp="20230412 20:34:03.779" level="INFO">/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/urllib3/connectionpool.py:1043: InsecureRequestWarning: Unverified HTTPS request is being made to host 'weatherapi-com.p.rapidapi.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20230412 20:34:03.780" level="INFO">${forecast_weather_request} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20230412 20:34:03.005" endtime="20230412 20:34:03.780"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${forecast_weather_respond}</var>
+<arg>${forecast_weather_request.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230412 20:34:03.782" level="INFO">${forecast_weather_respond} = {'error': {'code': 1006, 'message': 'No matching location found.'}}</msg>
+<status status="PASS" starttime="20230412 20:34:03.780" endtime="20230412 20:34:03.782"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${forecast_weather_request_status_code}</var>
+<arg>${forecast_weather_request.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230412 20:34:03.783" level="INFO">${forecast_weather_request_status_code} = 400</msg>
+<status status="PASS" starttime="20230412 20:34:03.782" endtime="20230412 20:34:03.784"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${forecast_weather_respond}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:34:03.784" level="INFO">${forecast_weather_respond} = {'error': {'code': 1006, 'message': 'No matching location found.'}}</msg>
+<status status="PASS" starttime="20230412 20:34:03.784" endtime="20230412 20:34:03.784"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${forecast_weather_request_status_code}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:34:03.785" level="INFO">${forecast_weather_request_status_code} = 400</msg>
+<status status="PASS" starttime="20230412 20:34:03.784" endtime="20230412 20:34:03.785"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:03.002" endtime="20230412 20:34:03.785"/>
+</kw>
+<kw name="User Validate Status Code" library="ForecastWeather">
+<arg>400</arg>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${forecast_weather_request_status_code}</arg>
+<arg>${expectedCodeStatus}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230412 20:34:03.786" endtime="20230412 20:34:03.786"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:03.785" endtime="20230412 20:34:03.786"/>
+</kw>
+<kw name="User Validate the Respond Body" library="ForecastWeather">
+<if>
+<branch type="IF" condition="${forecast_weather_request_status_code} == 200">
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_name}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.788" endtime="20230412 20:34:03.788"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_name}</var>
+<arg>${location_name}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.788" endtime="20230412 20:34:03.788"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_name}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.788" endtime="20230412 20:34:03.788"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_region}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.region</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.788" endtime="20230412 20:34:03.788"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_region}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.789" endtime="20230412 20:34:03.789"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_region}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.789" endtime="20230412 20:34:03.789"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_country}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.country</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.789" endtime="20230412 20:34:03.789"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_country}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.789" endtime="20230412 20:34:03.789"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_country}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.789" endtime="20230412 20:34:03.789"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lat}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.lat</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.789" endtime="20230412 20:34:03.789"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.789" endtime="20230412 20:34:03.789"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.789" endtime="20230412 20:34:03.790"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lat}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.790" endtime="20230412 20:34:03.790"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lon}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.lon</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.790" endtime="20230412 20:34:03.790"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.790" endtime="20230412 20:34:03.790"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.790" endtime="20230412 20:34:03.790"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lon}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.790" endtime="20230412 20:34:03.790"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_tz_id}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.tz_id</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.790" endtime="20230412 20:34:03.790"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_tz_id}</var>
+<arg>${location_tz_id}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.790" endtime="20230412 20:34:03.791"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_tz_id}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.791" endtime="20230412 20:34:03.791"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime_epoch}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.localtime_epoch</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.791" endtime="20230412 20:34:03.791"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.791" endtime="20230412 20:34:03.791"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.791" endtime="20230412 20:34:03.791"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime_epoch}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.791" endtime="20230412 20:34:03.792"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.localtime</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.792" endtime="20230412 20:34:03.792"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime}</var>
+<arg>${location_localtime}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.792" endtime="20230412 20:34:03.792"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:03.792" endtime="20230412 20:34:03.792"/>
+</kw>
+<status status="NOT RUN" starttime="20230412 20:34:03.788" endtime="20230412 20:34:03.792"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>Error Message is appear on the respond body</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230412 20:34:03.792" level="INFO">Error Message is appear on the respond body</msg>
+<status status="PASS" starttime="20230412 20:34:03.792" endtime="20230412 20:34:03.793"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:03.792" endtime="20230412 20:34:03.793"/>
+</branch>
+<status status="PASS" starttime="20230412 20:34:03.787" endtime="20230412 20:34:03.793"/>
+</if>
+<status status="PASS" starttime="20230412 20:34:03.787" endtime="20230412 20:34:03.793"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:03.002" endtime="20230412 20:34:03.793"/>
+</test>
+<test id="s1-s2-t5" name="User Get Respond with Invalid Days" line="30">
+<kw name="User Get The Data" library="ForecastWeather">
+<arg>${X_RapidAPI_Key}</arg>
+<arg>${invalid_data}</arg>
+<arg>${invalid_data}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>X-RapidAPI-Key=${X_RapidAPI_Key}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:34:03.795" level="INFO">${header} = {'X-RapidAPI-Key': '5609de86f7mshff37ac23dfeca81p1d8122jsn05613f1f337a'}</msg>
+<status status="PASS" starttime="20230412 20:34:03.795" endtime="20230412 20:34:03.795"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${params}</var>
+<arg>q=${country}</arg>
+<arg>days=${days}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:34:03.796" level="INFO">${params} = {'q': '$%^&amp;*()', 'days': '$%^&amp;*()'}</msg>
+<status status="PASS" starttime="20230412 20:34:03.795" endtime="20230412 20:34:03.796"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>forecast_weather</arg>
+<arg>${baseURL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230412 20:34:03.796" level="INFO">Creating Session using : alias=forecast_weather, url=https://weatherapi-com.p.rapidapi.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230412 20:34:03.796" endtime="20230412 20:34:03.796"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${forecast_weather_request}</var>
+<arg>forecast_weather</arg>
+<arg>/forecast.json</arg>
+<arg>params=${params}</arg>
+<arg>headers=${header}</arg>
+<arg>expected_status=Anything</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230412 20:34:04.603" level="INFO">GET Request : url=https://weatherapi-com.p.rapidapi.com/forecast.json?q=%24%25%5E%26%2A%28%29&amp;days=%24%25%5E%26%2A%28%29 
+ path_url=/forecast.json?q=%24%25%5E%26%2A%28%29&amp;days=%24%25%5E%26%2A%28%29 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'X-RapidAPI-Key': '5609de86f7mshff37ac23dfeca81p1d8122jsn05613f1f337a'} 
+ body=None 
+ </msg>
+<msg timestamp="20230412 20:34:04.604" level="INFO">GET Response : url=https://weatherapi-com.p.rapidapi.com/forecast.json?q=%24%25%5E%26%2A%28%29&amp;days=%24%25%5E%26%2A%28%29 
+ status=400, reason=Bad Request 
+ headers={'Date': 'Wed, 12 Apr 2023 13:34:04 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Cache-Control': 'public, max-age=5', 'CDN-EdgeStorageId': '1064', 'CDN-ProxyVer': '1.03', 'CDN-RequestCountryCode': 'SG', 'CDN-RequestPullCode': '400', 'CDN-PullZone': '93447', 'CDN-CachedAt': '04/12/2023 13:34:04', 'CDN-Uid': '8fa3a04a-75d9-4707-8056-b7b33c8ac7fe', 'CDN-Cache': 'MISS', 'CDN-RequestId': '62109bb7307a5e1f0ccde8beb0ec14e8', 'CDN-RequestPullSuccess': 'True', 'CDN-Status': '400', 'X-RateLimit-Requests-Limit': '1000000', 'X-RateLimit-Requests-Remaining': '999957', 'X-RateLimit-Requests-Reset': '2484374', 'Server': 'RapidAPI-1.2.8', 'X-RapidAPI-Version': '1.2.8', 'X-RapidAPI-Region': 'AWS - ap-southeast-1'} 
+ body={"error":{"code":1006,"message":"No matching location found."}} 
+ </msg>
+<msg timestamp="20230412 20:34:04.604" level="INFO">/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/urllib3/connectionpool.py:1043: InsecureRequestWarning: Unverified HTTPS request is being made to host 'weatherapi-com.p.rapidapi.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20230412 20:34:04.605" level="INFO">${forecast_weather_request} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20230412 20:34:03.796" endtime="20230412 20:34:04.605"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${forecast_weather_respond}</var>
+<arg>${forecast_weather_request.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230412 20:34:04.607" level="INFO">${forecast_weather_respond} = {'error': {'code': 1006, 'message': 'No matching location found.'}}</msg>
+<status status="PASS" starttime="20230412 20:34:04.605" endtime="20230412 20:34:04.607"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${forecast_weather_request_status_code}</var>
+<arg>${forecast_weather_request.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230412 20:34:04.608" level="INFO">${forecast_weather_request_status_code} = 400</msg>
+<status status="PASS" starttime="20230412 20:34:04.607" endtime="20230412 20:34:04.608"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${forecast_weather_respond}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:34:04.608" level="INFO">${forecast_weather_respond} = {'error': {'code': 1006, 'message': 'No matching location found.'}}</msg>
+<status status="PASS" starttime="20230412 20:34:04.608" endtime="20230412 20:34:04.608"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${forecast_weather_request_status_code}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:34:04.609" level="INFO">${forecast_weather_request_status_code} = 400</msg>
+<status status="PASS" starttime="20230412 20:34:04.609" endtime="20230412 20:34:04.609"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:03.794" endtime="20230412 20:34:04.609"/>
+</kw>
+<kw name="User Validate Status Code" library="ForecastWeather">
+<arg>400</arg>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${forecast_weather_request_status_code}</arg>
+<arg>${expectedCodeStatus}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230412 20:34:04.610" endtime="20230412 20:34:04.611"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:04.610" endtime="20230412 20:34:04.611"/>
+</kw>
+<kw name="User Validate the Respond Body" library="ForecastWeather">
+<if>
+<branch type="IF" condition="${forecast_weather_request_status_code} == 200">
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_name}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.612" endtime="20230412 20:34:04.612"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_name}</var>
+<arg>${location_name}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.612" endtime="20230412 20:34:04.612"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_name}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.612" endtime="20230412 20:34:04.612"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_region}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.region</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.612" endtime="20230412 20:34:04.612"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_region}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.612" endtime="20230412 20:34:04.613"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_region}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.613" endtime="20230412 20:34:04.613"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_country}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.country</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.613" endtime="20230412 20:34:04.613"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_country}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.613" endtime="20230412 20:34:04.613"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_country}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.613" endtime="20230412 20:34:04.613"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lat}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.lat</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.613" endtime="20230412 20:34:04.613"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.613" endtime="20230412 20:34:04.613"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.613" endtime="20230412 20:34:04.613"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lat}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.614" endtime="20230412 20:34:04.614"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lon}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.lon</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.614" endtime="20230412 20:34:04.614"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.614" endtime="20230412 20:34:04.614"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.614" endtime="20230412 20:34:04.614"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lon}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.614" endtime="20230412 20:34:04.614"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_tz_id}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.tz_id</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.614" endtime="20230412 20:34:04.614"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_tz_id}</var>
+<arg>${location_tz_id}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.614" endtime="20230412 20:34:04.614"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_tz_id}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.614" endtime="20230412 20:34:04.614"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime_epoch}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.localtime_epoch</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.614" endtime="20230412 20:34:04.615"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.615" endtime="20230412 20:34:04.615"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.615" endtime="20230412 20:34:04.615"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime_epoch}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.615" endtime="20230412 20:34:04.615"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.localtime</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.615" endtime="20230412 20:34:04.615"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime}</var>
+<arg>${location_localtime}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.615" endtime="20230412 20:34:04.615"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:04.615" endtime="20230412 20:34:04.615"/>
+</kw>
+<status status="NOT RUN" starttime="20230412 20:34:04.612" endtime="20230412 20:34:04.615"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>Error Message is appear on the respond body</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230412 20:34:04.616" level="INFO">Error Message is appear on the respond body</msg>
+<status status="PASS" starttime="20230412 20:34:04.615" endtime="20230412 20:34:04.616"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:04.615" endtime="20230412 20:34:04.616"/>
+</branch>
+<status status="PASS" starttime="20230412 20:34:04.612" endtime="20230412 20:34:04.616"/>
+</if>
+<status status="PASS" starttime="20230412 20:34:04.611" endtime="20230412 20:34:04.616"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:03.793" endtime="20230412 20:34:04.616"/>
+</test>
+<test id="s1-s2-t6" name="User Get Respond with Empty X_RapidAPI_Key" line="35">
+<kw name="User Get The Data" library="ForecastWeather">
+<arg>${empty_value}</arg>
+<arg>${invalid_data}</arg>
+<arg>${days}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>X-RapidAPI-Key=${X_RapidAPI_Key}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:34:04.618" level="INFO">${header} = {'X-RapidAPI-Key': ''}</msg>
+<status status="PASS" starttime="20230412 20:34:04.618" endtime="20230412 20:34:04.618"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${params}</var>
+<arg>q=${country}</arg>
+<arg>days=${days}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:34:04.619" level="INFO">${params} = {'q': '$%^&amp;*()', 'days': '2'}</msg>
+<status status="PASS" starttime="20230412 20:34:04.618" endtime="20230412 20:34:04.619"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>forecast_weather</arg>
+<arg>${baseURL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230412 20:34:04.619" level="INFO">Creating Session using : alias=forecast_weather, url=https://weatherapi-com.p.rapidapi.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230412 20:34:04.619" endtime="20230412 20:34:04.619"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${forecast_weather_request}</var>
+<arg>forecast_weather</arg>
+<arg>/forecast.json</arg>
+<arg>params=${params}</arg>
+<arg>headers=${header}</arg>
+<arg>expected_status=Anything</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230412 20:34:05.210" level="INFO">GET Request : url=https://weatherapi-com.p.rapidapi.com/forecast.json?q=%24%25%5E%26%2A%28%29&amp;days=2 
+ path_url=/forecast.json?q=%24%25%5E%26%2A%28%29&amp;days=2 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'X-RapidAPI-Key': ''} 
+ body=None 
+ </msg>
+<msg timestamp="20230412 20:34:05.210" level="INFO">GET Response : url=https://weatherapi-com.p.rapidapi.com/forecast.json?q=%24%25%5E%26%2A%28%29&amp;days=2 
+ status=401, reason=Unauthorized 
+ headers={'Date': 'Wed, 12 Apr 2023 13:34:05 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'X-RapidAPI-Version': '1.2.8', 'X-RapidAPI-Region': 'AWS - ap-southeast-1', 'X-RapidAPI-Proxy-Response': 'true', 'Server': 'RapidAPI-1.2.8'} 
+ body={"message":"Invalid API key. Go to https:\/\/docs.rapidapi.com\/docs\/keys for more info."} 
+ </msg>
+<msg timestamp="20230412 20:34:05.210" level="INFO">/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/urllib3/connectionpool.py:1043: InsecureRequestWarning: Unverified HTTPS request is being made to host 'weatherapi-com.p.rapidapi.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20230412 20:34:05.211" level="INFO">${forecast_weather_request} = &lt;Response [401]&gt;</msg>
+<status status="PASS" starttime="20230412 20:34:04.620" endtime="20230412 20:34:05.211"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${forecast_weather_respond}</var>
+<arg>${forecast_weather_request.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230412 20:34:05.213" level="INFO">${forecast_weather_respond} = {'message': 'Invalid API key. Go to https://docs.rapidapi.com/docs/keys for more info.'}</msg>
+<status status="PASS" starttime="20230412 20:34:05.211" endtime="20230412 20:34:05.213"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${forecast_weather_request_status_code}</var>
+<arg>${forecast_weather_request.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230412 20:34:05.214" level="INFO">${forecast_weather_request_status_code} = 401</msg>
+<status status="PASS" starttime="20230412 20:34:05.213" endtime="20230412 20:34:05.214"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${forecast_weather_respond}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:34:05.215" level="INFO">${forecast_weather_respond} = {'message': 'Invalid API key. Go to https://docs.rapidapi.com/docs/keys for more info.'}</msg>
+<status status="PASS" starttime="20230412 20:34:05.214" endtime="20230412 20:34:05.215"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${forecast_weather_request_status_code}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:34:05.216" level="INFO">${forecast_weather_request_status_code} = 401</msg>
+<status status="PASS" starttime="20230412 20:34:05.215" endtime="20230412 20:34:05.216"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:04.617" endtime="20230412 20:34:05.216"/>
+</kw>
+<kw name="User Validate Status Code" library="ForecastWeather">
+<arg>401</arg>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${forecast_weather_request_status_code}</arg>
+<arg>${expectedCodeStatus}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230412 20:34:05.216" endtime="20230412 20:34:05.217"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:05.216" endtime="20230412 20:34:05.217"/>
+</kw>
+<kw name="User Validate the Respond Body" library="ForecastWeather">
+<if>
+<branch type="IF" condition="${forecast_weather_request_status_code} == 200">
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_name}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.218" endtime="20230412 20:34:05.218"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_name}</var>
+<arg>${location_name}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.218" endtime="20230412 20:34:05.218"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_name}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.218" endtime="20230412 20:34:05.218"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_region}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.region</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.218" endtime="20230412 20:34:05.218"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_region}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.218" endtime="20230412 20:34:05.218"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_region}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.218" endtime="20230412 20:34:05.218"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_country}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.country</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.218" endtime="20230412 20:34:05.218"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_country}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.219" endtime="20230412 20:34:05.219"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_country}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.219" endtime="20230412 20:34:05.219"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lat}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.lat</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.219" endtime="20230412 20:34:05.219"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.219" endtime="20230412 20:34:05.219"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.219" endtime="20230412 20:34:05.219"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lat}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.219" endtime="20230412 20:34:05.219"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lon}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.lon</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.219" endtime="20230412 20:34:05.219"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.220" endtime="20230412 20:34:05.220"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.220" endtime="20230412 20:34:05.220"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lon}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.220" endtime="20230412 20:34:05.220"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_tz_id}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.tz_id</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.220" endtime="20230412 20:34:05.220"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_tz_id}</var>
+<arg>${location_tz_id}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.220" endtime="20230412 20:34:05.220"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_tz_id}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.220" endtime="20230412 20:34:05.220"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime_epoch}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.localtime_epoch</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.220" endtime="20230412 20:34:05.220"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.220" endtime="20230412 20:34:05.220"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.221" endtime="20230412 20:34:05.221"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime_epoch}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.221" endtime="20230412 20:34:05.221"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.localtime</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.221" endtime="20230412 20:34:05.221"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime}</var>
+<arg>${location_localtime}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.221" endtime="20230412 20:34:05.221"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.221" endtime="20230412 20:34:05.221"/>
+</kw>
+<status status="NOT RUN" starttime="20230412 20:34:05.217" endtime="20230412 20:34:05.221"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>Error Message is appear on the respond body</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230412 20:34:05.221" level="INFO">Error Message is appear on the respond body</msg>
+<status status="PASS" starttime="20230412 20:34:05.221" endtime="20230412 20:34:05.221"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:05.221" endtime="20230412 20:34:05.221"/>
+</branch>
+<status status="PASS" starttime="20230412 20:34:05.217" endtime="20230412 20:34:05.221"/>
+</if>
+<status status="PASS" starttime="20230412 20:34:05.217" endtime="20230412 20:34:05.222"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:04.617" endtime="20230412 20:34:05.222"/>
+</test>
+<test id="s1-s2-t7" name="User Get Respond with Invalid X_RapidAPI_Key" line="40">
+<kw name="User Get The Data" library="ForecastWeather">
+<arg>${invalid_data}</arg>
+<arg>${invalid_data}</arg>
+<arg>${days}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>X-RapidAPI-Key=${X_RapidAPI_Key}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:34:05.224" level="INFO">${header} = {'X-RapidAPI-Key': '$%^&amp;*()'}</msg>
+<status status="PASS" starttime="20230412 20:34:05.224" endtime="20230412 20:34:05.224"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${params}</var>
+<arg>q=${country}</arg>
+<arg>days=${days}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230412 20:34:05.225" level="INFO">${params} = {'q': '$%^&amp;*()', 'days': '2'}</msg>
+<status status="PASS" starttime="20230412 20:34:05.224" endtime="20230412 20:34:05.225"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>forecast_weather</arg>
+<arg>${baseURL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230412 20:34:05.225" level="INFO">Creating Session using : alias=forecast_weather, url=https://weatherapi-com.p.rapidapi.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230412 20:34:05.225" endtime="20230412 20:34:05.226"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${forecast_weather_request}</var>
+<arg>forecast_weather</arg>
+<arg>/forecast.json</arg>
+<arg>params=${params}</arg>
+<arg>headers=${header}</arg>
+<arg>expected_status=Anything</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230412 20:34:05.834" level="INFO">GET Request : url=https://weatherapi-com.p.rapidapi.com/forecast.json?q=%24%25%5E%26%2A%28%29&amp;days=2 
+ path_url=/forecast.json?q=%24%25%5E%26%2A%28%29&amp;days=2 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'X-RapidAPI-Key': '$%^&amp;*()'} 
+ body=None 
+ </msg>
+<msg timestamp="20230412 20:34:05.834" level="INFO">GET Response : url=https://weatherapi-com.p.rapidapi.com/forecast.json?q=%24%25%5E%26%2A%28%29&amp;days=2 
+ status=403, reason=Forbidden 
+ headers={'Date': 'Wed, 12 Apr 2023 13:34:06 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'X-RapidAPI-Version': '1.2.8', 'X-RapidAPI-Region': 'AWS - ap-southeast-1', 'X-RapidAPI-Proxy-Response': 'true', 'Server': 'RapidAPI-1.2.8'} 
+ body={"message":"You are not subscribed to this API."} 
+ </msg>
+<msg timestamp="20230412 20:34:05.834" level="INFO">/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/urllib3/connectionpool.py:1043: InsecureRequestWarning: Unverified HTTPS request is being made to host 'weatherapi-com.p.rapidapi.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20230412 20:34:05.835" level="INFO">${forecast_weather_request} = &lt;Response [403]&gt;</msg>
+<status status="PASS" starttime="20230412 20:34:05.226" endtime="20230412 20:34:05.835"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${forecast_weather_respond}</var>
+<arg>${forecast_weather_request.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230412 20:34:05.837" level="INFO">${forecast_weather_respond} = {'message': 'You are not subscribed to this API.'}</msg>
+<status status="PASS" starttime="20230412 20:34:05.835" endtime="20230412 20:34:05.837"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${forecast_weather_request_status_code}</var>
+<arg>${forecast_weather_request.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230412 20:34:05.838" level="INFO">${forecast_weather_request_status_code} = 403</msg>
+<status status="PASS" starttime="20230412 20:34:05.837" endtime="20230412 20:34:05.838"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${forecast_weather_respond}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:34:05.839" level="INFO">${forecast_weather_respond} = {'message': 'You are not subscribed to this API.'}</msg>
+<status status="PASS" starttime="20230412 20:34:05.839" endtime="20230412 20:34:05.839"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${forecast_weather_request_status_code}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230412 20:34:05.840" level="INFO">${forecast_weather_request_status_code} = 403</msg>
+<status status="PASS" starttime="20230412 20:34:05.839" endtime="20230412 20:34:05.840"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:05.223" endtime="20230412 20:34:05.840"/>
+</kw>
+<kw name="User Validate Status Code" library="ForecastWeather">
+<arg>403</arg>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${forecast_weather_request_status_code}</arg>
+<arg>${expectedCodeStatus}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230412 20:34:05.840" endtime="20230412 20:34:05.841"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:05.840" endtime="20230412 20:34:05.841"/>
+</kw>
+<kw name="User Validate the Respond Body" library="ForecastWeather">
+<if>
+<branch type="IF" condition="${forecast_weather_request_status_code} == 200">
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_name}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.842" endtime="20230412 20:34:05.842"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_name}</var>
+<arg>${location_name}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.842" endtime="20230412 20:34:05.842"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_name}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.842" endtime="20230412 20:34:05.842"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_region}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.region</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.842" endtime="20230412 20:34:05.842"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_region}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.842" endtime="20230412 20:34:05.842"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_region}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.843" endtime="20230412 20:34:05.843"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_country}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.country</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.843" endtime="20230412 20:34:05.843"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_region}</var>
+<arg>${location_country}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.843" endtime="20230412 20:34:05.843"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_country}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.843" endtime="20230412 20:34:05.843"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lat}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.lat</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.843" endtime="20230412 20:34:05.844"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.844" endtime="20230412 20:34:05.844"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lat}</var>
+<arg>${location_lat}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.844" endtime="20230412 20:34:05.844"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lat}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.844" endtime="20230412 20:34:05.844"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_lon}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.lon</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.844" endtime="20230412 20:34:05.844"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.844" endtime="20230412 20:34:05.844"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_lon}</var>
+<arg>${location_lon}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.844" endtime="20230412 20:34:05.844"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_lon}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.845" endtime="20230412 20:34:05.845"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_tz_id}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.tz_id</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.845" endtime="20230412 20:34:05.845"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_tz_id}</var>
+<arg>${location_tz_id}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.845" endtime="20230412 20:34:05.845"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_tz_id}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.845" endtime="20230412 20:34:05.845"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime_epoch}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.localtime_epoch</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.845" endtime="20230412 20:34:05.845"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.845" endtime="20230412 20:34:05.845"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${location_localtime_epoch}</var>
+<arg>${location_localtime_epoch}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.845" endtime="20230412 20:34:05.846"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime_epoch}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.846" endtime="20230412 20:34:05.846"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${location_localtime}</var>
+<arg>${forecast_weather_respond}</arg>
+<arg>$.location.localtime</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.846" endtime="20230412 20:34:05.846"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${location_localtime}</var>
+<arg>${location_localtime}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.846" endtime="20230412 20:34:05.846"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${location_localtime}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20230412 20:34:05.846" endtime="20230412 20:34:05.846"/>
+</kw>
+<status status="NOT RUN" starttime="20230412 20:34:05.842" endtime="20230412 20:34:05.846"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>Error Message is appear on the respond body</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230412 20:34:05.847" level="INFO">Error Message is appear on the respond body</msg>
+<status status="PASS" starttime="20230412 20:34:05.847" endtime="20230412 20:34:05.847"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:05.846" endtime="20230412 20:34:05.847"/>
+</branch>
+<status status="PASS" starttime="20230412 20:34:05.841" endtime="20230412 20:34:05.847"/>
+</if>
+<status status="PASS" starttime="20230412 20:34:05.841" endtime="20230412 20:34:05.847"/>
+</kw>
+<status status="PASS" starttime="20230412 20:34:05.222" endtime="20230412 20:34:05.847"/>
+</test>
+<status status="PASS" starttime="20230412 20:34:00.610" endtime="20230412 20:34:05.848"/>
+</suite>
+<status status="PASS" starttime="20230412 20:33:57.584" endtime="20230412 20:34:05.851"/>
+</suite>
+<statistics>
+<total>
+<stat pass="12" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="12" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="5" fail="0" skip="0" id="s1-s1" name="TC01-GET-RealTimeWeather">Tests.TC01-GET-RealTimeWeather</stat>
+<stat pass="7" fail="0" skip="0" id="s1-s2" name="TC02-GET-ForecastWeather">Tests.TC02-GET-ForecastWeather</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
