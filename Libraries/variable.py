@@ -7,3 +7,7 @@ long_lat= "-7.7588325,110.4303985"
 country= "Jakarta"
 
 days= "2"
+
+empty_value = ""
+
+invalid_data = "$%^&*()"

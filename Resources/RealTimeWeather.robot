@@ -7,6 +7,7 @@ Variables    ../Libraries/variable.py
 
 *** Keywords ***
 User Get The Data
+    [Arguments]    ${X_RapidAPI_Key}    ${long_lat}
     ${header}=    Create Dictionary    X-RapidAPI-Key=${X_RapidAPI_Key}
     ${params}=    Create Dictionary    q=${long_lat}
     Create Session    real_time_weather    ${baseURL}

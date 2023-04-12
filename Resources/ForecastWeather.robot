@@ -7,6 +7,7 @@ Variables    ../Libraries/variable.py
 
 *** Keywords ***
 User Get The Data
+    [Arguments]    ${X_RapidAPI_Key}    ${country}    ${days}
     ${header}=    Create Dictionary    X-RapidAPI-Key=${X_RapidAPI_Key}
     ${params}=    Create Dictionary    q=${country}    days=${days}
     Create Session    forecast_weather    ${baseURL}
